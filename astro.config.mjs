@@ -1,5 +1,4 @@
 import mdx from "@astrojs/mdx";
-import umami from "@yeskunall/astro-umami";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import playformCompress from "@playform/compress";
@@ -10,11 +9,10 @@ import { defineConfig } from "astro/config";
 import rehypeExternalLinks from "rehype-external-links";
 import rehypeKatex from "rehype-katex";
 import remarkMath from "remark-math";
-import rehypeExternalLinks from 'rehype-external-links';
 import { CODE_THEME, USER_SITE } from "./src/config.ts";
 import updateConfig from "./src/integration/updateConfig.ts";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time";
-
+import umami from "@yeskunall/astro-umami";
 
 // https://astro.build/config
 export default defineConfig({
