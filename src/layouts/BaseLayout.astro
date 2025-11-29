@@ -9,11 +9,7 @@ import Footer from "@components/Footer.astro";
 import Navbar from "@components/Navbar.astro";
 import MobileTOC from "@components/widgets/MobileTOC.astro";
 import umami from "@yeskunall/astro-umami";
-export default defineConfig({
-  integrations: [
-+    umami({ id: "b1fb46a3-ed58-470d-bf5c-2455ea610fef" }),
-  ],
-});
+
 
 const { title, image, description = SITE_DESCRIPTION, headings = [], showTOC = false, isIndexed = true } = Astro.props;
 ---

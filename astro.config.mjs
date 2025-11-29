@@ -17,6 +17,14 @@ import updateConfig from "./src/integration/updateConfig.ts";
 
 import { remarkReadingTime } from "./src/plugins/remark-reading-time";
 
+import umami from "@yeskunall/astro-umami";
+
+export default defineConfig({
+  integrations: [
+    umami({ id: "94db1cb1-74f4-4a40-ad6c-962362670409" }),
+  ],
+});
+
 // https://astro.build/config
 export default defineConfig({
   site: USER_SITE,
