@@ -1,4 +1,5 @@
 import mdx from "@astrojs/mdx";
+import umami from "@yeskunall/astro-umami";
 import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import playformCompress from "@playform/compress";
@@ -13,7 +14,7 @@ import rehypeExternalLinks from 'rehype-external-links';
 import { CODE_THEME, USER_SITE } from "./src/config.ts";
 import updateConfig from "./src/integration/updateConfig.ts";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time";
-import umami from "@yeskunall/astro-umami";
+
 
 // https://astro.build/config
 export default defineConfig({
@@ -24,16 +25,16 @@ export default defineConfig({
       includePaths: ["./src/styles"],
     },
   },
-  integrations: [updateConfig(), expressiveCode({
+  integrations: [updateConfig(), 
+    expressiveCode({
     themes: [CODE_THEME],
     styleOverrides: {
       borderRadius: "0.75rem",
     },
   }), mdx({
       rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: [] }]],
-    }),
-    umami({ id: "b1fb46a3-ed58-470d-bf5c-2455ea610fef" }),
-     icon(), terser({
+  }), umami({ id: "b1fb46a3-ed58-470d-bf5c-2455ea610fef" }),
+    icon(), terser({
     compress: true,
     mangle: true,
   }), sitemap(), tailwind({
