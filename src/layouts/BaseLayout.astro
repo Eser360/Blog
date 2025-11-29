@@ -8,6 +8,12 @@ import Sidebar from "@components/Sidebar.astro";
 import Footer from "@components/Footer.astro";
 import Navbar from "@components/Navbar.astro";
 import MobileTOC from "@components/widgets/MobileTOC.astro";
+import umami from "@yeskunall/astro-umami";
+export default defineConfig({
+  integrations: [
++    umami({ id: "b1fb46a3-ed58-470d-bf5c-2455ea610fef" }),
+  ],
+});
 
 const { title, image, description = SITE_DESCRIPTION, headings = [], showTOC = false, isIndexed = true } = Astro.props;
 ---
@@ -51,7 +57,6 @@ const { title, image, description = SITE_DESCRIPTION, headings = [], showTOC = f
     <script is:inline src="https://cdn.telemetrydeck.com/websdk/telemetrydeck.min.js" 
     data-app-id="ED27DE8C-85CD-47BD-A215-69388F308B14">
     </script>
-    <script is:inline defer src="https://cloud.umami.is/script.js" data-website-id="b1fb46a3-ed58-470d-bf5c-2455ea610fef"></script>
   </head>
 
   <body class="flex flex-col min-h-screen" {...isIndexed ? { "data-pagefind-body": true } : {}}>
