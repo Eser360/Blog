@@ -3,7 +3,6 @@ import BaseLayout from "@/layouts/BaseLayout.astro";
 import { t } from "@config";
 import { Icon } from "astro-icon/components";
 import MainCard from "@/components/MainCard.astro";
-import Info from "@/components/mdx/Info.astro";
 import Success from "@/components/mdx/Success.astro";
 ---
 
@@ -17,9 +16,15 @@ import Success from "@/components/mdx/Success.astro";
   <br />  
   <Success>İletişime geçtiğiniz için teşekkürler. <br /> En kısa sürede size geri dönüş yapıyor olacağım.</Success>
    <br /><br />
-  <h2 class="contact-title">Aşağıdaki yöntemleri de kullanarak iletişime geçebilirsiniz.</h2><br />
-    <Info><b>Mail Gönder</b> - <a href="mailto:eser360@gmail.com?subject=%C4%B0leti%C5%9Fim%20Formu%20-%20EserSevinc%20Blog">İletişime Geç</a></Info><br />
-    <Info><b>Signal</b> - <a href="https://signal.me/#eu/CMLd22HJMz2jVyj_GFo-KU0uwU2hifce_mRIcS2BhFAnfjTeop1EKLTbTpFqvOnP" target="_blank">EserSevinc.01</a></Info><br />
-    <Info><b>Mastodon</b> - <a href="https://mastodon.social/@esersevinc" target="_blank">@esersevinc@mastodon.social</a></Info><br />
+  
+   <div class="text-center">
+    <h2 class="contact-title">🚴 Biraz daha gezinmeye ne dersin?</h2><br />
+    <div class="flex flex-wrap gap-4 justify-center">
+      <a href="/blog" class="btn btn-primary gap-2 btn-shine-effect">
+        <Icon name="lucide:book-open" class="w-5 h-5" />
+        <span>Blog'u Keşfet</span>
+      </a>
+    </div>
+  </div>
   </MainCard>
 </BaseLayout>
