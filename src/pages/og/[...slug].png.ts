@@ -42,7 +42,7 @@ async function fetchNotoSansSCFonts() {
 
   try {
     const cssResp = await fetch(
-      "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap",
+      "https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&subset=latin,latin-ext&display=swap",
     );
     if (!cssResp.ok)
       throw new Error("Failed to fetch Google Fonts CSS");
@@ -294,7 +294,7 @@ export async function GET({
   const fonts: FontOptions[] = [];
   if (fontRegular) {
     fonts.push({
-      name: "Noto Sans SC",
+      name: "Noto Sans",
       data: fontRegular,
       weight: 400,
       style: "normal",
@@ -302,7 +302,7 @@ export async function GET({
   }
   if (fontBold) {
     fonts.push({
-      name: "Noto Sans SC",
+      name: "Noto Sans",
       data: fontBold,
       weight: 700,
       style: "normal",
