@@ -35,7 +35,7 @@ export const getStaticPaths: GetStaticPaths = async () => {
 
 let fontCache: { regular: Buffer | null; bold: Buffer | null } | null = null;
 
-async function fetchNotoSansSCFonts() {
+async function fetchNotoSansFonts() {
   if (fontCache) {
     return fontCache;
   }
@@ -102,7 +102,7 @@ export async function GET({
   const { post } = props;
 
   // Try to fetch fonts from Google Fonts (woff2) at runtime.
-  const { regular: fontRegular, bold: fontBold } = await fetchNotoSansSCFonts();
+  const { regular: fontRegular, bold: fontBold } = await fetchNotoSansFonts();
 
   // Avatar: still read from disk (small assets)
   const avatarBuffer = fs.readFileSync(`./public/${USER_AVATAR}`);
@@ -130,7 +130,7 @@ export async function GET({
         display: "flex",
         flexDirection: "column",
         backgroundColor,
-        fontFamily: "\"Noto Sans SC\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
+        fontFamily: "\"Noto Sans\", -apple-system, BlinkMacSystemFont, \"Segoe UI\", Roboto, \"Helvetica Neue\", Arial, sans-serif",
         padding: "60px",
         paddingTop: "60px",
         paddingBottom: "80px",
@@ -312,7 +312,16 @@ export async function GET({
   const svg = await satori(template, {
     width: 1200,
     height: 630,
-    fonts,
+    fonts: [
+      {
+        name: 'Noto Sans', // Şablondaki (CSS) isimle aynı olmalı
+        data: fontData,     // fs.readFileSync ile okuduğunuz Buffer
+        weight: 400,
+        style: 'normal',
+        // ÖNEMLİ: Bazı durumlarda lang tanımlamak yardımcı olabilir
+        lang: 'tr-TR', 
+      },
+    ],
   });
 
   const png = await sharp(Buffer.from(svg)).png().toBuffer();
