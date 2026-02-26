@@ -71,7 +71,7 @@ function buildFonts(
   const fonts: FontOptions[] = [];
   if (fontRegular) {
     fonts.push({
-      name: "Noto Sans SC",
+      name: "Noto Sans",
       data: fontRegular,
       weight: 400,
       style: "normal",
@@ -79,7 +79,7 @@ function buildFonts(
   }
   if (fontBold) {
     fonts.push({
-      name: "Noto Sans SC",
+      name: "Noto Sans",
       data: fontBold,
       weight: 700,
       style: "normal",
@@ -118,7 +118,7 @@ function buildOgTemplate({
         flexDirection: "column",
         backgroundColor,
         fontFamily:
-          '"Noto Sans SC", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
+          '"Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif',
         padding: "60px",
         paddingTop: "60px",
         paddingBottom: "80px",
@@ -314,7 +314,7 @@ async function fetchNotoSansSCFonts(): Promise<FontCache> {
   fontCachePromise = (async () => {
     try {
       const cssResp = await fetchWithTimeout(
-        "https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@400;700&display=swap",
+        "https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;700&subset=latin,latin-ext&display=swap",
         5000,
       );
       if (!cssResp.ok) throw new Error("Failed to fetch Google Fonts CSS");
