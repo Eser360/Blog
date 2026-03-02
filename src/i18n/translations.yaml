@@ -103,7 +103,7 @@ tr:
     tableOfContents: İçindekiler
     noContents: Başlık bulunamadı
     404title: Sayfa Bulunamadı
-    404description: Bilinmeyene doğru bir yolculuğa çıkmış gibi görünüyorsunuz. Aradığınız sayfa mevcut değil veya başka bir boyuta taşınmış.
+    404description: Bilinmeyene doğru bir yolculuğa çıkmış gibi görünüyorsunuz. Aradığınız sayfa mevcut değil veya başka bir boyuta transfer olmuş.
     404backHome: Ana Sayfaya Dön
     404goBack: Geri Dön
     404youMightLike: İlginizi çekebilir
@@ -111,8 +111,8 @@ tr:
     404browseArchives: Arşivlere göz atın
     404searchContent: İçerik ara
     notFound: Bulunamadı
-    tagNotFoundDescription: Bu etikete sahip herhangi bir gönderi bulamadık. Aradığınızı bulmak için mevcut tüm etiketlere göz atabilirsiniz.
-    categoryNotFoundDescription: Bu kategoride herhangi bir gönderi bulamadık. Aradığınızı bulmak için mevcut tüm kategorilere göz atabilirsiniz.
+    tagNotFoundDescription: Bu etikete sahip herhangi bir gönderi bulamadık. Aradığınızı bulmak için şansınızı diğer etiketlerde deneyebilirsiniz.
+    categoryNotFoundDescription: Bu kategoride herhangi bir gönderi bulamadık. Aradığınızı bulmak için şansınızı diğer kategorilerde deneyebilirsiniz.
   months:
     1: Ocak
     2: Şubat
