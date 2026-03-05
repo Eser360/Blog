@@ -37,7 +37,7 @@ export default defineConfig({
     mangle: true,
   }), sitemap(), tailwind({
     configFile: "./tailwind.config.mjs",
-  }), playformCompress(),],
+  }), playformCompress(), yeskunallumami(),],
   markdown: {
     remarkPlugins: [remarkMath, remarkReadingTime],
     rehypePlugins: [rehypeKatex, [
