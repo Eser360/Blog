@@ -14,8 +14,6 @@ import updateConfig from "./src/integration/updateConfig.ts";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time";
 import umami from "@yeskunall/astro-umami";
 
-import yeskunallumami from "@yeskunall/astro-umami";
-
 // https://astro.build/config
 export default defineConfig({
   site: USER_SITE,
