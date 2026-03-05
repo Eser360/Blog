@@ -41,6 +41,9 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.16
         version: 0.5.16(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@24.3.3)(typescript@5.9.2)))
+      '@yeskunall/astro-umami':
+        specifier: ^0.0.7
+        version: 0.0.7(astro@5.17.3(@types/node@24.3.3)(jiti@1.21.7)(lightningcss@1.29.3)(rollup@2.79.2)(sass-embedded@1.92.1)(sass@1.92.1)(terser@5.44.0)(typescript@5.9.2)(yaml@2.8.1))
       astro:
         specifier: ^5.17.3
         version: 5.17.3(@types/node@24.3.3)(jiti@1.21.7)(lightningcss@1.29.3)(rollup@2.79.2)(sass-embedded@1.92.1)(sass@1.92.1)(terser@5.44.0)(typescript@5.9.2)(yaml@2.8.1)
@@ -984,8 +987,8 @@ packages:
     resolution: {integrity: sha512-kzyuwOAQnXJNLS9PSyrk0CWk35nWJW/zl/6KvnTBMFK65gm7U1/Z5BqjxeapjZCIhQcM/DsrEmcbRwDyXyXK4A==}
     engines: {node: '>=14'}
 
-  '@cyberalien/svg-utils@1.1.5':
-    resolution: {integrity: sha512-U/80ApAyEV4xdIFDcV/g56CFy9Niccmuxte64XtRIRxHiMttOQppYjms7xX2OHAgh6nCGX43jqfHoBvZcTj9mQ==}
+  '@cyberalien/svg-utils@1.2.4':
+    resolution: {integrity: sha512-4gy8TOhEp/Zy0q/B935c5KZn2XFtFoUy01VH04bCMgzljpht0/QQGrk4eS5SNkl2YgohpTur2CYsRdDdCyYSAg==}
 
   '@dprint/formatter@0.3.0':
     resolution: {integrity: sha512-N9fxCxbaBOrDkteSOzaCqwWjso5iAe+WJPsHC021JfHNj2ThInPNEF13ORDKta3llq5D1TlclODCvOvipH7bWQ==}
@@ -1464,8 +1467,8 @@ packages:
   '@iconify/tools@4.1.2':
     resolution: {integrity: sha512-q6NzLQYEN9zkDfcyBqD3vItHcZw97w/s++3H3TBxUORr57EfHxj6tOW6fyufDjMq+Vl56WXWaPx1csBPYlI5CA==}
 
-  '@iconify/tools@5.0.3':
-    resolution: {integrity: sha512-W5nbH5fNv20TvU49Al19Foos/ViAnmppbCNV9ieGl6/dRMDRzxeFol6peXX/NAgaOytQwZZxTTJRq/Kxd4eWsA==}
+  '@iconify/tools@5.0.5':
+    resolution: {integrity: sha512-JE3uqne+l89kggZYKIukaYDIae4lHKMNVDg7Oc+L+8rPwiMcfD5C56YLWyynyH/ib6I9xDFH1aamdfoL+m7OFA==}
 
   '@iconify/types@2.0.0':
     resolution: {integrity: sha512-+wluvCrRhXrhyOmRDJ3q8mux9JkKy5SJ/v8ol2tu4FVjyYvtEzkc/3pK15ET6RKg4b4w4BmTk1+gsCUhf21Ykg==}
@@ -2787,6 +2790,11 @@ packages:
 
   '@vue/shared@3.5.13':
     resolution: {integrity: sha512-/hnE/qP5ZoGpol0a5mDi45bOd7t3tjYJBjsgCsivow7D48cJeV5l05RD82lPqi7gRiphZM37rnhW1l6ZoCNNnQ==}
+
+  '@yeskunall/astro-umami@0.0.7':
+    resolution: {integrity: sha512-8W/At28qKyPGepwvVumgJX0VZ0F9KK4M4zNDQfUZ3iBJpAKUTAkdIXM7i7I+PFsP7rXOo/AVgcDXDOv9L03QhQ==}
+    peerDependencies:
+      astro: ^3.0.0 || ^4.0.0 || ^5.0.0
 
   acorn-jsx@5.3.2:
     resolution: {integrity: sha512-rq9s+JNhf0IChjtDXxllJ7g41oZk5SlXtp0LHwyA5cejwn7vKmKp4pPri6YEePv2PU65sAsegbXtIinmDFDXgQ==}
@@ -6553,6 +6561,10 @@ packages:
   sax@1.4.1:
     resolution: {integrity: sha512-+aWOz7yVScEGoKNd4PA10LZ8sk0A/z5+nXQG5giUO5rprX9jgYsTdov9qCchZiPIZezbZH+jRut8nPodFAX4Jg==}
 
+  sax@1.5.0:
+    resolution: {integrity: sha512-21IYA3Q5cQf089Z6tgaUTr7lDAyzoTPx5HRtbhsME8Udispad8dC/+sziTNugOEx54ilvatQ9YCzl4KQLPcRHA==}
+    engines: {node: '>=11.0.0'}
+
   scrl@2.0.0:
     resolution: {integrity: sha512-BbbVXxrOn58Ge4wjOORIRVZamssQu08ISLL/AC2z9aATIsKqZLESwZVW5YR0Yz0C7qqDRHb4yNXJlQ8yW0SGHw==}
 
@@ -6876,6 +6888,11 @@ packages:
     engines: {node: '>=16'}
     hasBin: true
 
+  svgo@4.0.1:
+    resolution: {integrity: sha512-XDpWUOPC6FEibaLzjfe0ucaV0YrOjYotGJO1WpF0Zd+n6ZGEQUsSugaoLq9QkEZtAfQIxT42UChcssDVPP3+/w==}
+    engines: {node: '>=16'}
+    hasBin: true
+
   swup-morph-plugin@1.3.0:
     resolution: {integrity: sha512-vTqWYA5ZFkWMo54K8jlol5OCvboqRsELLfM1PUkS2IiL+1dDDChzMHa4ZBI5+yfl7bZUCWgd8EmuhMd/i/o+Qg==}
     peerDependencies:
@@ -7105,9 +7122,6 @@ packages:
     resolution: {integrity: sha512-CWBzXQrc/qOkhidw1OzBTQuYRbfyxDXJMVJ1XNwUHGROVmuaeiEm3OslpZ1RV96d7SKKjZKrSJu3+t/xlw3R9A==}
     engines: {node: '>=14.17'}
     hasBin: true
-
-  ufo@1.6.1:
-    resolution: {integrity: sha512-9a4/uxlTWJ4+a5i0ooc1rU7C7YOw3wT+UGqdeNNHWnOF9qcMBgLRS+4IYUqbczewFx4mLEig6gawh7X6mFlEkA==}
 
   ufo@1.6.3:
     resolution: {integrity: sha512-yDJTmhydvl5lJzBmy/hyOAA0d+aqCBuwl818haVdYCRrWV84o7YyeVm4QlVHStqNrrJSTb6jKuFAVqAFsr+K3Q==}
@@ -8641,7 +8655,7 @@ snapshots:
 
   '@ctrl/tinycolor@4.2.0': {}
 
-  '@cyberalien/svg-utils@1.1.5':
+  '@cyberalien/svg-utils@1.2.4':
     dependencies:
       '@iconify/types': 2.0.0
 
@@ -9019,15 +9033,15 @@ snapshots:
       - debug
       - supports-color
 
-  '@iconify/tools@5.0.3':
+  '@iconify/tools@5.0.5':
     dependencies:
-      '@cyberalien/svg-utils': 1.1.5
+      '@cyberalien/svg-utils': 1.2.4
       '@iconify/types': 2.0.0
       '@iconify/utils': 3.1.0
       fflate: 0.8.2
       modern-tar: 0.7.5
       pathe: 2.0.3
-      svgo: 4.0.0
+      svgo: 4.0.1
 
   '@iconify/types@2.0.0': {}
 
@@ -10592,6 +10606,10 @@ snapshots:
 
   '@vue/shared@3.5.13': {}
 
+  '@yeskunall/astro-umami@0.0.7(astro@5.17.3(@types/node@24.3.3)(jiti@1.21.7)(lightningcss@1.29.3)(rollup@2.79.2)(sass-embedded@1.92.1)(sass@1.92.1)(terser@5.44.0)(typescript@5.9.2)(yaml@2.8.1))':
+    dependencies:
+      astro: 5.17.3(@types/node@24.3.3)(jiti@1.21.7)(lightningcss@1.29.3)(rollup@2.79.2)(sass-embedded@1.92.1)(sass@1.92.1)(terser@5.44.0)(typescript@5.9.2)(yaml@2.8.1)
+
   acorn-jsx@5.3.2(acorn@8.15.0):
     dependencies:
       acorn: 8.15.0
@@ -10724,7 +10742,7 @@ snapshots:
 
   astro-iconify@1.2.0:
     dependencies:
-      '@iconify/tools': 5.0.3
+      '@iconify/tools': 5.0.5
       node-fetch: 3.3.2
       resolve-pkg: 2.0.0
       svgo: 3.3.2
@@ -10795,7 +10813,7 @@ snapshots:
       unstorage: 1.17.4
       vfile: 6.0.3
       vite: 6.4.1(@types/node@24.3.3)(jiti@1.21.7)(lightningcss@1.29.3)(sass-embedded@1.92.1)(sass@1.92.1)(terser@5.39.0)(yaml@2.8.1)
-      vitefu: 1.1.1(vite@6.4.1(@types/node@24.3.3)(jiti@1.21.7)(lightningcss@1.29.3)(sass-embedded@1.92.1)(sass@1.92.1)(terser@5.39.0)(yaml@2.8.1))
+      vitefu: 1.1.1(vite@6.4.1(@types/node@24.3.3)(jiti@1.21.7)(lightningcss@1.29.3)(sass-embedded@1.92.1)(sass@1.92.1)(terser@5.44.0)(yaml@2.8.1))
       xxhash-wasm: 1.1.0
       yargs-parser: 21.1.1
       yocto-spinner: 0.2.3
@@ -14274,7 +14292,7 @@ snapshots:
       acorn: 8.15.0
       pathe: 2.0.3
       pkg-types: 1.3.1
-      ufo: 1.6.1
+      ufo: 1.6.3
 
   modern-tar@0.7.5: {}
 
@@ -14398,7 +14416,7 @@ snapshots:
     dependencies:
       destr: 2.0.5
       node-fetch-native: 1.6.7
-      ufo: 1.6.1
+      ufo: 1.6.3
 
   ohash@2.0.11: {}
 
@@ -15504,6 +15522,8 @@ snapshots:
 
   sax@1.4.1: {}
 
+  sax@1.5.0: {}
+
   scrl@2.0.0: {}
 
   scslre@0.3.0:
@@ -15937,6 +15957,16 @@ snapshots:
       picocolors: 1.1.1
       sax: 1.4.1
 
+  svgo@4.0.1:
+    dependencies:
+      commander: 11.1.0
+      css-select: 5.2.2
+      css-tree: 3.1.0
+      css-what: 6.2.2
+      csso: 5.0.5
+      picocolors: 1.1.1
+      sax: 1.5.0
+
   swup-morph-plugin@1.3.0(swup@4.8.2):
     dependencies:
       '@swup/plugin': 4.0.0
@@ -16180,8 +16210,6 @@ snapshots:
 
   typescript@5.9.2: {}
 
-  ufo@1.6.1: {}
-
   ufo@1.6.3: {}
 
   uglify-js@3.19.3:
@@ -16405,10 +16433,6 @@ snapshots:
       sass-embedded: 1.92.1
       terser: 5.44.0
       yaml: 2.8.1
-
-  vitefu@1.1.1(vite@6.4.1(@types/node@24.3.3)(jiti@1.21.7)(lightningcss@1.29.3)(sass-embedded@1.92.1)(sass@1.92.1)(terser@5.39.0)(yaml@2.8.1)):
-    optionalDependencies:
-      vite: 6.4.1(@types/node@24.3.3)(jiti@1.21.7)(lightningcss@1.29.3)(sass-embedded@1.92.1)(sass@1.92.1)(terser@5.39.0)(yaml@2.8.1)
 
   vitefu@1.1.1(vite@6.4.1(@types/node@24.3.3)(jiti@1.21.7)(lightningcss@1.29.3)(sass-embedded@1.92.1)(sass@1.92.1)(terser@5.44.0)(yaml@2.8.1)):
     optionalDependencies:

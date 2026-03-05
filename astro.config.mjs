@@ -13,6 +13,8 @@ import { CODE_THEME, USER_SITE } from "./src/config.ts";
 import updateConfig from "./src/integration/updateConfig.ts";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time";
 
+import yeskunallumami from "@yeskunall/astro-umami";
+
 // https://astro.build/config
 export default defineConfig({
   site: USER_SITE,
@@ -22,21 +24,19 @@ export default defineConfig({
       includePaths: ["./src/styles"],
     },
   },
-  integrations: [updateConfig(), 
-    expressiveCode({
-    themes: [CODE_THEME],
-    styleOverrides: {
-      borderRadius: "0.75rem",
-    },
-  }), mdx({
+  integrations: [updateConfig(), expressiveCode({
+  themes: [CODE_THEME],
+  styleOverrides: {
+    borderRadius: "0.75rem",
+  },
+}), mdx({
       rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: [] }]],
-  }),
-    icon(), terser({
+  }), icon(), terser({
     compress: true,
     mangle: true,
   }), sitemap(), tailwind({
     configFile: "./tailwind.config.mjs",
-  }), playformCompress()],
+  }), playformCompress(), yeskunallumami()],
   markdown: {
     remarkPlugins: [remarkMath, remarkReadingTime],
     rehypePlugins: [rehypeKatex, [
