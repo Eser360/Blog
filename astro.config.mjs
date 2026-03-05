@@ -12,6 +12,7 @@ import remarkMath from "remark-math";
 import { CODE_THEME, USER_SITE } from "./src/config.ts";
 import updateConfig from "./src/integration/updateConfig.ts";
 import { remarkReadingTime } from "./src/plugins/remark-reading-time";
+import umami from "@yeskunall/astro-umami";
 
 import yeskunallumami from "@yeskunall/astro-umami";
 
@@ -29,7 +30,9 @@ export default defineConfig({
   styleOverrides: {
     borderRadius: "0.75rem",
   },
-}), mdx({
+}), 
+  umami({ id: "b1fb46a3-ed58-470d-bf5c-2455ea610fef" }),
+  mdx({
       rehypePlugins: [[rehypeExternalLinks, { target: '_blank', rel: [] }]],
   }), icon(), terser({
     compress: true,
