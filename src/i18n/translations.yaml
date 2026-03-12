@@ -70,7 +70,7 @@ tr:
     noCategory: Hiçbir kategori atanmadı
     categoryCard: Kategoriler
     categoryPage: Kategoriler
-    categoryPageHome: Tüm Yazılar ve Kategoriler
+    categoryPageHome: Tüm Kategoriler ve Yazılar
     totalCategories: Kategori
     noPosts: Hiçbir gönderi mevcut değil
     archivePage: Arşiv
@@ -92,7 +92,7 @@ tr:
     categoryDescription: Bu kategorideki tüm makalelere göz atın
     tagsPageDescription: Blog genelinde kullanılan tüm etiketleri keşfedin
     categoriesPageDescription: Blogda mevcut kategorileri ve tüm yazıları keşfedin...
-    categoriesPageDescriptionhome: Blogdaki tüm yazıları ve kategorileri keşfedin...
+    categoriesPageDescriptionhome: Blogdaki tüm kategorileri ve yazıları keşfedin...
     archivesPageDescription: Tarihe göre düzenlenmiş makalelere göz atın
     backToBlog: Blog'a geri dön
     themeToggle: Tema Geçişi
