@@ -12,6 +12,7 @@ import "dayjs/locale/de";
 import "dayjs/locale/ru";
 import "dayjs/locale/pt";
 import "dayjs/locale/it";
+import "dayjs/locale/tr";
 
 // Set the default locale from the site configuration
 // @ts-expect-error - TypeScript
