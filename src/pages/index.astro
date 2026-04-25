@@ -58,7 +58,8 @@ const recentPosts = [...allPosts]
           </h1>
           <p class="text-xl text-base-content/80 max-w-3xl mb-8">
             Yazılım sektöründe <span>İş Analisti</span> ve <span>Proje Yöneticisi</span> olarak çalışıyorum...<br />
-            İçerik üretmeyi, bir şeyler yazmayı, okumayı, insanlara yardımcı olmayı, spor yapmayı ve özellikle bisiklet sürmeyi seviyorum.<br />
+            İçerik üretmeyi, bir şeyler yazmayı, okumayı, insanlara yardımcı olmayı, spor yapmayı ve özellikle bisiklet sürmeyi
+            seviyorum.<br />
           </p>
 
           <br />
@@ -66,7 +67,7 @@ const recentPosts = [...allPosts]
             <a href="/blog" class="btn btn-primary gap-2 btn-shine-effect">
               <Icon name="lucide:book-open" class="w-5 h-5" />
               <span>Blog'u Keşfet</span>
-            <a href="/about" class="btn btn-outline gap-2">
+              <a href="/about" class="btn btn-outline gap-2">
                 <Icon name="lucide:user" class="w-5 h-5" />
                 <span>Hakkımda</span>
               </a>
@@ -74,167 +75,175 @@ const recentPosts = [...allPosts]
           </div>
         </div>
       </section>
-  </MainCard>
+    </div>
 
-<hr />
+    <hr />
 
-<BaseCard title="Son Eklenen Yazılar">
-  <div class="flex items-center gap-2 mb-4">
-    <Icon name="lucide:clock" class="w-6 h-6 text-primary" />
-    <h2 class="text-2xl md:text-3xl font-bold">Son Eklenen Yazılar</h2>
-  </div>
-  <div class="divider my-2"></div>
-  <ul class="flex flex-col gap-3 py-2">
-    {recentPosts.map((post) => (
-      <li class="flex items-center justify-between gap-4 border-b border-base-content/10 last:border-0 pb-3 last:pb-0">
-        <a href={`/blog/${post.slug}`} class="text-base font-medium hover:text-primary transition-colors flex-1 truncate">
-          {post.data.title}
-        </a>
-        <span class="text-sm opacity-75 whitespace-nowrap font-mono">
-          {dayjs(post.data.pubDate).format(DATE_FORMAT)}
-        </span>
-      </li>
-    ))}
-  </ul>
-</BaseCard>
-
-<hr />
-<BaseCard title={t("label.categoryPage")}>
-  <BaseCard title={t("label.categoryPage")}>
-    <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
-      <div class="flex items-center gap-2">
-        <Icon name="lucide:folder" class="w-6 h-6 text-primary" />
-        <h1 id="h1" class="text-2xl md:text-3xl font-bold">{t("label.categoryPageHome")}</h1>
-        <div class="badge badge-primary">{totalCategories} {t("label.totalCategories")}</div>
-        <div class="badge badge-accent">{totalPosts} {totalPosts === 1 ? t("label.post") : t("label.posts")}</div>
+    <BaseCard title="Son Eklenen Yazılar">
+      <div class="flex items-center gap-2 mb-4">
+        <Icon name="lucide:clock" class="w-6 h-6 text-primary" />
+        <h2 class="text-2xl md:text-3xl font-bold">Son Eklenen Yazılar</h2>
       </div>
-    </div>
-    <div class="divider my-2"></div>
-    <p class="text-sm opacity-75">{t("label.categoriesPageDescriptionhome")}</p>
-    </div>
-  
-  </BaseCard>
-  
-  <BaseCard title={t("label.categoryPage")}>
-    <div class="categories-container">
-      {
-        categoryEntries.length > 0 ? (
-          <div class="categories-grid">
-            {categoryEntries.map(([category, posts], index) => (
-              <div class="category-card" data-index={index}>
-                <div class={`category-inner ${getCategoryColorClass(index)}`}>
-                  <div class="category-header" data-category={category}>
-                    <div class="category-title">
-                      <div class="category-icon">
-                        <Icon name="lucide:folder" />
+      <div class="divider my-2"></div>
+      <ul class="flex flex-col gap-3 py-2">
+        {
+          recentPosts.map((post, index) => (
+            <li class="flex items-center justify-between gap-4 border-b border-base-content/10 last:border-0 pb-3 last:pb-0">
+              <div class="flex items-center gap-3 flex-1 min-w-0">
+                <span class="text-sm font-bold text-base-content/50 w-8 text-right">#{totalPosts - index}</span>
+                <a
+                  href={`/blog/${post.slug}`}
+                  class="text-base font-medium hover:text-primary transition-colors truncate"
+                >
+                  {post.data.title}
+                </a>
+              </div>
+              <span class="text-sm opacity-75 whitespace-nowrap font-mono">
+                {dayjs(post.data.pubDate).format(DATE_FORMAT)}
+              </span>
+            </li>
+          ))
+        }
+      </ul>
+    </BaseCard>
+
+    <hr />
+    <BaseCard title={t("label.categoryPage")}>
+      <BaseCard title={t("label.categoryPage")}>
+        <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+          <div class="flex items-center gap-2">
+            <Icon name="lucide:folder" class="w-6 h-6 text-primary" />
+            <h1 id="h1" class="text-2xl md:text-3xl font-bold">{t("label.categoryPageHome")}</h1>
+            <div class="badge badge-primary">{totalCategories} {t("label.totalCategories")}</div>
+            <div class="badge badge-accent">{totalPosts} {totalPosts === 1 ? t("label.post") : t("label.posts")}</div>
+          </div>
+        </div>
+        <div class="divider my-2"></div>
+        <p class="text-sm opacity-75">{t("label.categoriesPageDescriptionhome")}</p>
+      </BaseCard>
+    </BaseCard>
+
+    <BaseCard title={t("label.categoryPage")}>
+      <div class="categories-container">
+        {
+          categoryEntries.length > 0 ? (
+            <div class="categories-grid">
+              {categoryEntries.map(([category, posts], index) => (
+                <div class="category-card" data-index={index}>
+                  <div class={`category-inner ${getCategoryColorClass(index)}`}>
+                    <div class="category-header" data-category={category}>
+                      <div class="category-title">
+                        <div class="category-icon">
+                          <Icon name="lucide:folder" />
+                        </div>
+                        <h2>{category}</h2>
+                        <span class="category-count">{posts.length}</span>
                       </div>
-                      <h2>{category}</h2>
-                      <span class="category-count">{posts.length}</span>
+                      <button class="toggle-btn" aria-label="Toggle category content">
+                        <Icon name="ri:arrow-down-s-line" class="toggle-icon" />
+                      </button>
                     </div>
-                    <button class="toggle-btn" aria-label="Toggle category content">
-                      <Icon name="ri:arrow-down-s-line" class="toggle-icon" />
-                    </button>
-                  </div>
-                  <div class="category-content scrollbar-none">
-                    <div class="category-divider" />
-                    <ul class="post-list">
-                      {posts.map((post) => (
-                        <li class="post-item">
-                          <a href={`/blog/${post.slug}`} class="post-link">
-                            <span class="post-title">{post.data.title}</span>
-                            <span class="post-date">{dayjs(post.data.pubDate).format(DATE_FORMAT)}</span>
-                          </a>
-                        </li>
-                      ))}
-                    </ul>
+                    <div class="category-content scrollbar-none">
+                      <div class="category-divider" />
+                      <ul class="post-list">
+                        {posts.map((post) => (
+                          <li class="post-item">
+                            <a href={`/blog/${post.slug}`} class="post-link">
+                              <span class="post-title">{post.data.title}</span>
+                              <span class="post-date">{dayjs(post.data.pubDate).format(DATE_FORMAT)}</span>
+                            </a>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
                   </div>
                 </div>
-              </div>
-            ))}
-          </div>
-        ) : (
-          <div class="empty-state">
-            <Icon name="ri:emotion-sad-line" class="empty-icon" />
-            <p class="empty-text">{t("label.noCategory")}</p>
-          </div>
-        )
-      }
-    </div>
-  </BaseCard>
-</BaseLayout>
-<script>
-  document.addEventListener("astro:page-load", () => {
-    const MAX_HEIGHT_PX = 500;
-
-    const collapseCategory = (contentEl: HTMLElement, iconEl: HTMLElement | null, innerEl: HTMLElement | null) => {
-      if (contentEl) {
-        contentEl.style.maxHeight = "0px";
-        contentEl.classList.remove("expanded");
-      }
-      if (iconEl) {
-        iconEl.classList.remove("rotate-180");
-      }
-      if (innerEl) {
-        innerEl.classList.remove("expanded");
-      }
-    };
-
-    const expandCategory = (contentEl: HTMLElement, iconEl: HTMLElement, innerEl: HTMLElement) => {
-      if (contentEl) {
-        const scrollHeight = contentEl.scrollHeight;
-        contentEl.style.maxHeight = Math.min(scrollHeight, MAX_HEIGHT_PX) + "px";
-        contentEl.classList.add("expanded");
-      }
-      if (iconEl) {
-        iconEl.classList.add("rotate-180");
-      }
-      if (innerEl) {
-        innerEl.classList.add("expanded");
-      }
-    };
-
-    const categoryHeaders = document.querySelectorAll(".category-header");
-
-    categoryHeaders.forEach((header) => {
-      const card = header.closest(".category-card");
-      if (!card) return;
-
-      const content = card.querySelector(".category-content") as HTMLElement;
-      const toggleIcon = header.querySelector(".toggle-icon") as HTMLElement;
-      const inner = card.querySelector(".category-inner") as HTMLElement;
-
-      // Initialize maxHeight for all content HTMLElements
-      if (content) {
-        if (content.classList.contains("expanded")) {
-          // If initially expanded by class, set maxHeight appropriately
-          const scrollHeight = content.scrollHeight;
-          content.style.maxHeight = Math.min(scrollHeight, MAX_HEIGHT_PX) + "px";
-        } else {
-          content.style.maxHeight = "0px"; // Start collapsed
+              ))}
+            </div>
+          ) : (
+            <div class="empty-state">
+              <Icon name="ri:emotion-sad-line" class="empty-icon" />
+              <p class="empty-text">{t("label.noCategory")}</p>
+            </div>
+          )
         }
-      }
+      </div>
+    </BaseCard>
+  </MainCard>
+  <script>
+    document.addEventListener("astro:page-load", () => {
+      const MAX_HEIGHT_PX = 500;
 
-      header.addEventListener("click", () => {
-        if (!content || !toggleIcon || !inner) return;
+      const collapseCategory = (contentEl: HTMLElement, iconEl: HTMLElement | null, innerEl: HTMLElement | null) => {
+        if (contentEl) {
+          contentEl.style.maxHeight = "0px";
+          contentEl.classList.remove("expanded");
+        }
+        if (iconEl) {
+          iconEl.classList.remove("rotate-180");
+        }
+        if (innerEl) {
+          innerEl.classList.remove("expanded");
+        }
+      };
 
-        const isCurrentlyExpanded = content.classList.contains("expanded") && content.style.maxHeight !== "0px";
+      const expandCategory = (contentEl: HTMLElement, iconEl: HTMLElement, innerEl: HTMLElement) => {
+        if (contentEl) {
+          const scrollHeight = contentEl.scrollHeight;
+          contentEl.style.maxHeight = Math.min(scrollHeight, MAX_HEIGHT_PX) + "px";
+          contentEl.classList.add("expanded");
+        }
+        if (iconEl) {
+          iconEl.classList.add("rotate-180");
+        }
+        if (innerEl) {
+          innerEl.classList.add("expanded");
+        }
+      };
 
-        if (isCurrentlyExpanded) {
-          collapseCategory(content, toggleIcon, inner);
-        } else {
-          document.querySelectorAll(".category-content.expanded").forEach((openContent) => {
-            if (openContent !== content) {
-              const otherCard = openContent.closest(".category-card");
-              if (otherCard) {
-                const otherToggleIcon = otherCard.querySelector(".toggle-icon") as HTMLElement;
-                const otherInner = otherCard.querySelector(".category-inner") as HTMLElement;
-                collapseCategory(openContent as HTMLElement, otherToggleIcon, otherInner);
+      const categoryHeaders = document.querySelectorAll(".category-header");
+
+      categoryHeaders.forEach((header) => {
+        const card = header.closest(".category-card");
+        if (!card) return;
+
+        const content = card.querySelector(".category-content") as HTMLElement;
+        const toggleIcon = header.querySelector(".toggle-icon") as HTMLElement;
+        const inner = card.querySelector(".category-inner") as HTMLElement;
+
+        // Initialize maxHeight for all content HTMLElements
+        if (content) {
+          if (content.classList.contains("expanded")) {
+            // If initially expanded by class, set maxHeight appropriately
+            const scrollHeight = content.scrollHeight;
+            content.style.maxHeight = Math.min(scrollHeight, MAX_HEIGHT_PX) + "px";
+          } else {
+            content.style.maxHeight = "0px"; // Start collapsed
+          }
+        }
+
+        header.addEventListener("click", () => {
+          if (!content || !toggleIcon || !inner) return;
+
+          const isCurrentlyExpanded = content.classList.contains("expanded") && content.style.maxHeight !== "0px";
+
+          if (isCurrentlyExpanded) {
+            collapseCategory(content, toggleIcon, inner);
+          } else {
+            document.querySelectorAll(".category-content.expanded").forEach((openContent) => {
+              if (openContent !== content) {
+                const otherCard = openContent.closest(".category-card");
+                if (otherCard) {
+                  const otherToggleIcon = otherCard.querySelector(".toggle-icon") as HTMLElement;
+                  const otherInner = otherCard.querySelector(".category-inner") as HTMLElement;
+                  collapseCategory(openContent as HTMLElement, otherToggleIcon, otherInner);
+                }
               }
-            }
-          });
-          expandCategory(content, toggleIcon, inner);
-        }
+            });
+            expandCategory(content, toggleIcon, inner);
+          }
+        });
       });
     });
-  });
-</script>
+  </script></BaseLayout
+>
