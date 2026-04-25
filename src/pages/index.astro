@@ -35,6 +35,11 @@ categoryEntries.forEach(([_, posts]) => {
 const totalCategories = categoryMap.size;
 // Makalelerin toplam sayısı
 const totalPosts = allPosts.length;
+
+// Son eklenen 5 yazı
+const recentPosts = [...allPosts]
+  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+  .slice(0, 5);
 ---
 
 <BaseLayout title="Anasayfa">
@@ -70,6 +75,28 @@ const totalPosts = allPosts.length;
         </div>
       </section>
   </MainCard>
+
+<hr />
+
+<BaseCard title="Son Eklenen Yazılar">
+  <div class="flex items-center gap-2 mb-4">
+    <Icon name="lucide:clock" class="w-6 h-6 text-primary" />
+    <h2 class="text-2xl md:text-3xl font-bold">Son Eklenen Yazılar</h2>
+  </div>
+  <div class="divider my-2"></div>
+  <ul class="flex flex-col gap-3 py-2">
+    {recentPosts.map((post) => (
+      <li class="flex items-center justify-between gap-4 border-b border-base-content/10 last:border-0 pb-3 last:pb-0">
+        <a href={`/blog/${post.slug}`} class="text-base font-medium hover:text-primary transition-colors flex-1 truncate">
+          {post.data.title}
+        </a>
+        <span class="text-sm opacity-75 whitespace-nowrap font-mono">
+          {dayjs(post.data.pubDate).format(DATE_FORMAT)}
+        </span>
+      </li>
+    ))}
+  </ul>
+</BaseCard>
 
 <hr />
 <BaseCard title={t("label.categoryPage")}>
