@@ -7,12 +7,12 @@ site:
   favicon: /favicon.ico # Tarayıcı sekmelerinde ve diğer yerlerde kullanılan web sitesinin simgesi
   theme: # Daha fazla tema için https://daisyui.com/docs/themes/
     light: lemonade # Açık mod
-    dark:  dim # Koyu mod
+    dark: dim # Koyu mod
     code: monokai # Kod bloğunun teması https://shiki.style/themes
   date_format: ddd DD MMM YYYY # Tarih biçimi ayarı, özel biçimi destekler
   blog: # Blog ile ilgili yapılandırma
     pageSize: 7 # Sayfa başına görüntülenecek makale sayısı
-  menu: # Menü yapılandırması 
+  menu: # Menü yapılandırması
     - id: home # Öğe için benzersiz tanımlayıcı
       text: Anasayfa # Menü öğesi görüntüleme
       href: / # Menü öğesi bağlantısının URL'si
