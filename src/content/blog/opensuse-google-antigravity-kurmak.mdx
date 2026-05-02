@@ -1,0 +1,46 @@
+---
+title: "openSUSE üzerinde Google Antigravity Kurmak"
+description: "Bu yazıda openSUSE üzerinde Google Antigravity kurulumunu anlatıyorum."
+pubDate: "2026-05-02"
+categories:
+  - Linux
+tags:
+  - OpenSUSE
+  - Antigravity
+---
+import { Code } from 'astro-expressive-code/components'
+
+Antigravity'nin download sayfasında SUSE için verilen komutun çalışması için biraz değişiklik yapılması gerekiyor.
+
+Öncelikle terminali açın ve aşağıdaki kodu çalıştırın
+
+### Depoyu /etc/zypp/repos.d dizinine eklemek için
+
+BASH
+
+<Code code="
+sudo tee /etc/zypp/repos.d/antigravity.repo << 'EOL'
+[antigravity-rpm]
+name=Antigravity RPM Repository
+enabled=1
+autorefresh=1
+baseurl=https://us-central1-yum.pkg.dev/projects/antigravity-auto-updater-dev/antigravity-rpm
+gpgcheck=0
+EOL
+" lang="js" />
+
+### Daha sonra paket önbelleğini güncelliyoruz
+
+BASH
+
+<Code code="
+sudo zypper refresh
+" lang="js" />
+
+### Son olarak Antigravity'i yükleyin
+
+BASH
+
+<Code code="
+sudo zypper install antigravity
+" lang="js" />
