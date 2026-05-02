@@ -8,7 +8,6 @@ tags:
   - OpenSUSE
   - Antigravity
 ---
-import { Code } from 'astro-expressive-code/components'
 
 Antigravity'nin download sayfasında SUSE için verilen komutun çalışması için biraz değişiklik yapılması gerekiyor.
 
@@ -18,7 +17,7 @@ Antigravity'nin download sayfasında SUSE için verilen komutun çalışması i�
 
 BASH
 
-<Code code="
+```cpp
 sudo tee /etc/zypp/repos.d/antigravity.repo << 'EOL'
 [antigravity-rpm]
 name=Antigravity RPM Repository
@@ -27,20 +26,20 @@ autorefresh=1
 baseurl=https://us-central1-yum.pkg.dev/projects/antigravity-auto-updater-dev/antigravity-rpm
 gpgcheck=0
 EOL
-" lang="js" />
+```
 
 ### Daha sonra paket önbelleğini güncelliyoruz
 
 BASH
 
-<Code code="
+```cpp
 sudo zypper refresh
-" lang="js" />
+```
 
 ### Son olarak Antigravity'i yükleyin
 
 BASH
 
-<Code code="
+```cpp
 sudo zypper install antigravity
-" lang="js" />
+```
