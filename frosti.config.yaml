@@ -8,7 +8,7 @@ site:
   theme: # Daha fazla tema için https://daisyui.com/docs/themes/
     light: lemonade # Açık mod
     dark: dim # Koyu mod
-    code: monokai # Kod bloğunun teması https://shiki.style/themes
+    code: andromeeda # Kod bloğunun teması https://shiki.style/themes
   date_format: ddd DD MMM YYYY # Tarih biçimi ayarı, özel biçimi destekler
   blog: # Blog ile ilgili yapılandırma
     pageSize: 7 # Sayfa başına görüntülenecek makale sayısı
