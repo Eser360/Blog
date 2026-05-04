@@ -32,6 +32,7 @@ const url = new URL(`/blog/${blog.slug}`, Astro.url.origin);
   image={image}
   headings={headings}
   showTOC={true}
+  isBlogPost={true}
 >
   <MainCard title={blog.data.title} description={blog.data.description} image={blog.data.image} infoIcon="lucide:info">
     <PostInfo

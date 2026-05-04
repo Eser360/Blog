@@ -11,7 +11,7 @@ import MobileTOC from "@components/widgets/MobileTOC.astro";
 
 
 
-const { title, image, description = SITE_DESCRIPTION, headings = [], showTOC = false, isIndexed = true } = Astro.props;
+const { title, image, description = SITE_DESCRIPTION, headings = [], showTOC = false, isIndexed = true, isBlogPost = false } = Astro.props;
 ---
 
 <!doctype html>
@@ -22,7 +22,7 @@ const { title, image, description = SITE_DESCRIPTION, headings = [], showTOC = f
     <ElementCrossing />
     <PointerOnNavigation />
     <Header title={title} description={description} favicon={SITE_FAVICON} image={image} />
-    <title>{`${title} - ${SITE_TAB}`}</title>
+    <title>{isBlogPost ? title : `${title} - ${SITE_TAB}`}</title>
 
     <script define:vars={{ SITE_THEME }} is:inline>
       (function () {
