@@ -13,6 +13,7 @@
     # pkgs.nodejs_20
     # pkgs.nodePackages.nodemon
     # pkgs.corepack
+    # pkgs.sudo
   ];
 
   # Sets environment variables in the workspace
