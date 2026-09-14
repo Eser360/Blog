@@ -26,4 +26,5 @@ node_modules/
 
 # --- Senaryolar ve senaryonun kendisi ---
 frosti.update.sh
+frosti.update.js
 .updateignore
