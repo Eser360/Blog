@@ -10,7 +10,8 @@
     "search:clean": "rimraf public/pagefind",
     "search:index": "npm run build && cpy 'dist/pagefind/**' public/pagefind",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "update-theme": "node frosti.update.js"
   },
   "dependencies": {
     "@astrojs/check": "^0.9.6",
