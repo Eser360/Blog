@@ -24,29 +24,43 @@ export default defineConfig({
       includePaths: ["./src/styles"],
     },
   },
-  integrations: [updateConfig(), expressiveCode({
-    themes: [CODE_THEME],
-    styleOverrides: {
-    borderRadius: "0.75rem",
-    },
+  integrations: [
+    updateConfig(),
+    expressiveCode({
+      themes: [CODE_THEME],
+      styleOverrides: {
+        borderRadius: "0.75rem",
+      },
+    }),
     partytown({ config: { forward: ["dataLayer.push"] } }),
-  }), umami({ id: "b1fb46a3-ed58-470d-bf5c-2455ea610fef" }), mdx({
-    rehypePlugins: [[rehypeExternalLinks, { target: "_blank", rel: [] }]],
-  }), icon(), terser({
-    compress: true,
-    mangle: true,
-  }), sitemap(), tailwind({
-    configFile: "./tailwind.config.mjs",
-  }), playformCompress(), partytown()],
+    umami({ id: "b1fb46a3-ed58-470d-bf5c-2455ea610fef" }),
+    mdx({
+      rehypePlugins: [[rehypeExternalLinks, { target: "_blank", rel: [] }]],
+    }),
+    icon(),
+    terser({
+      compress: true,
+      mangle: true,
+    }),
+    sitemap(),
+    tailwind({
+      configFile: "./tailwind.config.mjs",
+    }),
+    playformCompress(),
+  ],
   markdown: {
     remarkPlugins: [remarkMath, remarkReadingTime],
-    rehypePlugins: [rehypeKatex, [
-      rehypeExternalLinks,
-      {
-        content: { type: "text", value: "↗" },
-      },
-    ]],
-    rehypePlugins: [[rehypeExternalLinks, { target: "_blank", rel: [] }]],
+    rehypePlugins: [
+      rehypeKatex,
+      [
+        rehypeExternalLinks,
+        {
+          target: "_blank",
+          rel: [],
+          content: { type: "text", value: "↗" },
+        },
+      ],
+    ],
   },
   trailingSlash: "never", // "or 'always' if you went with tralingSlash"
   vite: {
