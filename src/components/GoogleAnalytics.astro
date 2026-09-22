@@ -1,9 +1,15 @@
-<!-- Global site tag (gtag.js) - Google Analytics -->
-<script  type="text/partytown"  async src={`https://www.googletagmanager.com/gtag/js?id=${G-VS8ZV5Z67G}`}></script>
-<script  type="text/partytown"  define:vars={{ G-VS8ZV5Z67G }}>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){ dataLayer.push(arguments); }
-  gtag('js', new Date());
+---
+const GA_MEASUREMENT_ID = "G-VS8ZV5Z67G";
+---
 
-  gtag('config', G-VS8ZV5Z67G);
+<!-- Global site tag (gtag.js) - Google Analytics -->
+<script is:inline async src={`https://www.googletagmanager.com/gtag/js?id=${GA_MEASUREMENT_ID}`}></script>
+<script is:inline define:vars={{ GA_MEASUREMENT_ID }}>
+  window.dataLayer = window.dataLayer || [];
+  function gtag() {
+    dataLayer.push(arguments);
+  }
+  gtag("js", new Date());
+
+  gtag("config", GA_MEASUREMENT_ID);
 </script>
