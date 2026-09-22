@@ -29,7 +29,7 @@ export default defineConfig({
     styleOverrides: {
     borderRadius: "0.75rem",
     },
-    [partytown({ config: { forward: ["dataLayer.push"] } })],
+    partytown({ config: { forward: ["dataLayer.push"] } }),
   }), umami({ id: "b1fb46a3-ed58-470d-bf5c-2455ea610fef" }), mdx({
     rehypePlugins: [[rehypeExternalLinks, { target: "_blank", rel: [] }]],
   }), icon(), terser({
