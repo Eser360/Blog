@@ -4,7 +4,6 @@ import sitemap from "@astrojs/sitemap";
 import tailwind from "@astrojs/tailwind";
 import playformCompress from "@playform/compress";
 import terser from "@rollup/plugin-terser";
-import umami from "@yeskunall/astro-umami";
 import expressiveCode from "astro-expressive-code";
 import icon from "astro-icon";
 import { defineConfig } from "astro/config";
@@ -33,7 +32,6 @@ export default defineConfig({
       },
     }),
     partytown({ config: { forward: ["dataLayer.push"] } }),
-    umami({ id: "b1fb46a3-ed58-470d-bf5c-2455ea610fef" }),
     mdx({
       rehypePlugins: [[rehypeExternalLinks, { target: "_blank", rel: [] }]],
     }),
