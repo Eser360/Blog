@@ -44,9 +44,6 @@ importers:
       '@tailwindcss/typography':
         specifier: ^0.5.16
         version: 0.5.16(tailwindcss@3.4.17(ts-node@10.9.2(@types/node@24.3.3)(typescript@5.9.2)))
-      '@yeskunall/astro-umami':
-        specifier: ^0.0.7
-        version: 0.0.7(astro@5.17.3(@types/node@24.3.3)(jiti@1.21.7)(lightningcss@1.29.3)(rollup@2.79.2)(sass-embedded@1.92.1)(sass@1.92.1)(terser@5.44.0)(typescript@5.9.2)(yaml@2.8.1))
       astro:
         specifier: ^5.17.3
         version: 5.17.3(@types/node@24.3.3)(jiti@1.21.7)(lightningcss@1.29.3)(rollup@2.79.2)(sass-embedded@1.92.1)(sass@1.92.1)(terser@5.44.0)(typescript@5.9.2)(yaml@2.8.1)
