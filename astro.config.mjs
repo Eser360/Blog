@@ -32,6 +32,7 @@ export default defineConfig({
       },
     }),
     partytown({ config: { forward: ["dataLayer.push"] } }),
+    umami({ id: "b1fb46a3-ed58-470d-bf5c-2455ea610fef" }),
     mdx({
       rehypePlugins: [[rehypeExternalLinks, { target: "_blank", rel: [] }]],
     }),
