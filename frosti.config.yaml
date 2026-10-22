@@ -60,10 +60,10 @@ user:
         ariaLabel: Mastodon # Simgeler için erişilebilirlik etiketleri
         title: Mastodon # Simge yüzen başlık
         svg: "ri:mastodon-line"
-      - href: "https://github.com/Eser360"
-        ariaLabel: Github
-        title: Github
-        svg: "ri:github-line"
+      - href: "https://www.youtube.com/@EserSevinc"
+        ariaLabel: Youtube
+        title: Youtube
+        svg: "ri:youtube-line"
       - href: "https://www.strava.com/athletes/esersevinc/"
         ariaLabel: Strava
         title: Strava
@@ -78,6 +78,10 @@ user:
         ariaLabel: Mastodon
         title: Mastodon
         svg: "ri:mastodon-line"
+      - href: "https://www.youtube.com/@EserSevinc"
+        ariaLabel: Youtube
+        title: Youtube
+        svg: "ri:youtube-line"
       - href: "https://github.com/Eser360"
         ariaLabel: Github
         title: Github
