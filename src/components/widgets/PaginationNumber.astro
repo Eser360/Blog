@@ -9,7 +9,7 @@ const href = number == 1 ? baseUrl : `${baseUrl}/${number}`;
   href={href}
   title={`Page ${number}`}
   aria-label={`Page ${number}`}
-  class:list={["join-item btn bg-base-100", number === current && "btn-active", isOnly && "rounded-btn"]}
+  class:list={["join-item btn bg-base-100", Number(number) === Number(current) && "btn-active", isOnly && "rounded-btn"]}
 >
   {number}
 </a>

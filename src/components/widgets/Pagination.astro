@@ -6,6 +6,7 @@ import PaginationDropdown from "./PaginationDropdown.astro";
 import { t } from "@config";
 
 const { page, totalPages, pageLinks, baseUrl } = Astro.props as PaginationProps;
+const current = page.currentPage ?? page.current;
 ---
 
 <div class="flex justify-between items-center w-full gap-2 order-4" transition:name="pagination">
@@ -16,15 +17,15 @@ const { page, totalPages, pageLinks, baseUrl } = Astro.props as PaginationProps;
         <>
           {pageLinks.active.map((link: string | number) =>
             link === "..." ? (
-              <PaginationDropdown hiddenPages={pageLinks.hidden} current={page.current} baseUrl={baseUrl} />
+              <PaginationDropdown hiddenPages={pageLinks.hidden} current={current} baseUrl={baseUrl} />
             ) : (
-              <PaginationNumber number={link} current={page.current} baseUrl={baseUrl} />
+              <PaginationNumber number={link} current={current} baseUrl={baseUrl} />
             ),
           )}
         </>
       ) : (
         pageLinks.active.map((link: string | number) => (
-          <PaginationNumber number={link} current={page.current} baseUrl={baseUrl} isOnly={totalPages === 1} />
+          <PaginationNumber number={link} current={current} baseUrl={baseUrl} isOnly={totalPages === 1} />
         ))
       )
     }

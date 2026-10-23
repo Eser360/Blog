@@ -1,0 +1,83 @@
+---
+import type { Post, Page } from "@interfaces/data";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import MainCard from "@/components/MainCard.astro";
+import "@/styles/contactedit.scss";
+
+import PostCard from "@components/PostCard.astro";
+import CardGroup from "@components/temple/CardGroup.astro";
+import Pagination from "@components/widgets/Pagination.astro";
+import { generatePageLinks } from "@utils/blogUtils";
+import { getBooksPaginationPaths } from "@utils/paginationUtils";
+
+export async function getStaticPaths({ paginate }: { paginate: any }) {
+  return getBooksPaginationPaths({ paginate, pageSize: 7 });
+}
+
+const { page } = Astro.props as { page: Page };
+
+const totalPages = Math.ceil(page.total / page.size);
+const pageLinks = generatePageLinks(totalPages);
+---
+
+<BaseLayout title="Kitaplık">
+  <MainCard
+    title="Kitaplık"
+    description="Selamlar! 👋 Burası, severek okuduğum ve beni bazen heyecanlandıran bazen de bitse de gitsek dedirten tüm kitapların bir araya geldiği kitaplık köşem..."
+    textOverlay="KİTAPLIK"
+    infoIcon="lucide:book"
+  >
+    <h2 class="contact-title">📚 Kitap Aşkım Burada Başlıyor!</h2><br />
+    <p class="contact-description">
+      Selamlar! 👋 Burası, severek okuduğum ve beni bazen heyecanlandıran bazen de bitse de gitsek dedirten tüm
+      kitapların bir araya geldiği kitaplık köşem. <br />
+      Daha önceki yıllarda okuduğum kitapları şimdilik eklemedim, zamanla tümünü değil de sadece en beğendiğim kitapları
+      eklemeyi düşünüyorum.<br />
+    </p><br />
+    <p>
+      <b
+        ><a href="/blog/insan-okusun-diye-yaziyorum-bunlari/">Hayatım boyunca elimden kitap düşürmeyen biri olarak</a
+        ></b
+      >, o kağıt kokusuna ve hikayelerin gücüne her zaman hayran kaldım.
+    </p>
+    <p></p>Her kitap seven kağıt kokusunu sever ama ekitap ve sesli kitaplar da kendine göre avantajları ile birlikte
+    geliyor, onları da dışlamamamız gerektiğini düşünüyorum. Hatta çoğu zaman yanımda bir kitap taşıyamadığım için
+    ekitap okumak daha kolay oluyor diyebilirim.
+
+    <p>
+      Kitaplar bizi alıp bambaşka dünyalara götürüyor, yepyeni şeyler öğretiyor ve en önemlisi hayal gücümüzün
+      sınırlarını zorluyor.
+    </p>
+    <br />
+    <p>Yıllar geçtikçe okuma tutkum daha da arttı.</p>
+    <p></p>Emeklilik planlarımda, bol bol kitap okuma hayali en baş köşede duruyor.
+    <br />
+    <p>Koleksiyonuma katmak için sürekli yeni maceralar, ilginç fikirler ve heyecan verici sayfalar arıyorum.</p><br />
+    <p>
+      Eğer "Buna kesinlikle bayılırsın!" dediğin bir kitap varsa, lütfen hiç çekinme! <b
+        ><a href="/contact.astro">Bana ulaşıp</a></b
+      > tavsiye vermen beni çok mutlu eder. 🥳
+    </p>
+  </MainCard>
+  <section class="flex flex-col gap-6">
+    <CardGroup cols="1" gap="6">
+      {
+        page.data.map((blog: Post) => (
+          <PostCard
+            title={blog.data.title}
+            image={blog.data.image}
+            description={blog.data.description}
+            url={"/blog/" + blog.slug}
+            pubDate={blog.data.pubDate}
+            badge={blog.data.badge}
+            categories={blog.data.categories}
+            tags={blog.data.tags}
+            word={blog.remarkPluginFrontmatter.totalCharCount}
+            time={blog.remarkPluginFrontmatter.readingTime}
+          />
+        ))
+      }
+    </CardGroup>
+    <Pagination page={page} totalPages={totalPages} pageLinks={pageLinks} baseUrl="/books" />
+  </section>
+</BaseLayout>

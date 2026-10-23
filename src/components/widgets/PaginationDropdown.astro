@@ -12,7 +12,7 @@ const { hiddenPages, current, baseUrl } = Astro.props as PaginationDropdownProps
         <li class="w-full">
           <a
             href={page === 1 ? baseUrl : `${baseUrl}/${page}`}
-            class:list={["text-center py-1 px-3", page === current && "bg-primary text-primary-content"]}
+            class:list={["text-center py-1 px-3", Number(page) === Number(current) && "bg-primary text-primary-content"]}
           >
             {page}
           </a>

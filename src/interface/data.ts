@@ -21,11 +21,13 @@ export interface Page {
   url: {
     prev?: string;
     next?: string;
+    current?: string;
   };
   data: Post[];
   total: number;
   size: number;
-  current: number;
+  current?: number;
+  currentPage?: number;
 }
 
 export interface PostData {
