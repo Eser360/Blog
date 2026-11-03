@@ -1,0 +1,248 @@
+---
+title: "Organizasyon Verisi Nasıl Oluşturulur? Şirketler İçin Adım Adım Mimari Rehberi"
+description: "Organizasyon verisi nasıl doğru düzenlenir? Görev tanımı, pozisyon ve unvan ayrımlarıyla genel veri işleme kurallarına uygun rehberi keşfedin."
+pubDate: 2026-11-03
+categories:
+- İş Yaşamı
+tags:
+- Organizasyon Şeması
+- Organizasyon Verisi	
+- Görev Tanımı
+- Pozisyon Yönetimi
+- Veri İşleme
+- İnsan Kaynakları
+- Kurumsal Mimari
+- Kurumsal Gelişim
+---
+import Info from "../../components/mdx/Info.astro";
+
+<Info>Bu konuyla ilgili olarak Danışmanlık Hizmeti almak isterseniz **"[İletişim](/contact)"** kanallarından bana ulaşabilirsiniz. Çalıştığım projeler ve kuruluşlara **"[Projeler](/project)"** sayfasından bakabilirsiniz.</Info>
+
+## Kuruluşlar İçin Genel Veri İşleme Kurallarına Uygun Organizasyon Verisi Oluşturma Rehberi
+
+Binlerce lira harcamadan Organizasyon verinizi nasıl düzenlersiniz?
+
+### Giriş: Organizasyon Verisi Neden Kritik Bir Varlıktır?
+
+Günümüz iş dünyasında dijital dönüşüm, kurumsal sürdürülebilirlik ve operasyonel verimlilik hedeflerine ulaşmanın en temel şartlarından biri, **doğru ve ölçeklenebilir bir organizasyonel mimari** inşa etmektir. Birçok şirket için organizasyon şeması, yalnızca web sitesine konulan veya oryantasyon sunumlarında gösterilen statik bir "kutu ve çizgi" görselinden ibaret görülebilir. Ancak madalyonun diğer tarafında, İnsan Kaynakları (İK), Kalite Yönetimi ve Bilgi Teknolojileri (BT) birimleri için organizasyon verisi; onay mekanizmalarından yetkilendirmelere, ERP/HRMS yazılım entegrasyonlarından doküman yönetimine kadar tüm kurumsal süreçlerin omurgasını oluşturur.
+
+Çalıştığım ve danışmanlık sunduğum birçok kuruluşun organizasyon verisini ve şematik altyapısını incelediğimde, en sık karşılaştığım sorunların başında **eksik tanımlamalar, kavram karmaşaları ve veri işleme standartlarının göz ardı edilmesi** gelmektedir. Görünürde son derece basit gibi duran bu yapılar, uygulamada en ufak bir detay kaçırıldığında şirket büyüdükçe kontrol edilemez bir karmaşaya dönüşüyor.
+
+Başlangıçta esnek tutulan veya standart gözetilmeksizin oluşturulan veriler; çalışan sayısı arttığında, yeni departmanlar eklendiğinde veya şirket bünyesine yeni yazılımlar dahil edildiğinde devasa bir operasyonel yüke yol açar. Özellikle **genel veri işleme kuralları (Data Governance & Data Processing Standards)** uygulanmadığında, kullanılan mevcut İK yazılımı içerisinde sorunsuz çalışan bir veri yapısı, ERP, CRM, Doküman Yönetim Sistemi (Pro-Q, QDMS vb...) veya Identity Access Management (IAM - Kimlik Yönetimi) gibi farklı platformlarla entegre edilmeye çalışıldığında ciddi krizler doğurur.
+
+Bu kapsamlı rehberde; organizasyon verisinin temel kavramsal ayrımlarından entegrasyon mimarilerine, çoklu pozisyon yönetiminden kalite standartlarına kadar doğru bir organizasyon verisi yapısının nasıl kurulacağını adım adım ele alacağız.
+
+### 1\. Temel Kavram Ayrımları: Görev Tanımı, Unvan ve Pozisyon
+
+Organizasyon verisini düzenlerken yapılan en büyük ve en yaygın hata; **Görev Tanımı**, **Unvan** ve **Pozisyon** kavramlarının birbirine karıştırılması veya tek bir veri alanında birleştirilmesidir. Bu üç kavram, veri modellemesi açısından tamamen farklı varlıkları (entity) temsil eder.
+
+```
++-----------------------------------------------------------------------+
+|                            POZİSYON                                   |
+|                                                                       |
+|   [ Birim / Departman ]  +  [ Görev Tanımı ]  +  [ Atanan Personel ]  |
+|   (Örn: Montaj Üretim)      (Örn: Mühendis)      (Örn: Ali Korkmaz)   |
++-----------------------------------------------------------------------+
+                                  |
+                                  +--> [ Unvan / Kıdem ]: Kıdemli Mühendis
+```
+
+#### A. Görev Tanımı (Job Description)
+
+Görev Tanımı, bir çalışanın fonksiyonel olarak hangi sorumlulukları, yetkileri, süreçleri ve yetkinlikleri üstlendiğini belirleyen **standart ve dokümante edilmiş tanımdır**.
+
+- **Özelliği:** Kişiden ve departmandan bağımsızdır. Kalite yönetim sistemlerinde (ISO 9001 vb.) ve İK süreçlerinde yayımlanan resmi bir dokümandır.
+    
+- **Örnek:** *"Mühendis"* bir görev tanımıdır. Şirket bünyesindeki tüm mühendislerin genel görev alanı, temel analiz ve problem çözme sorumlulukları bu tanımda yer alır.
+    
+
+#### B. Unvan (Job Title / Seniority Level)
+
+Unvan, çalışanın hiyerarşik kademesini, kıdem seviyesini veya organizasyonel statüsünü belirten etikettir.
+
+- **Özelliği:** Görev tanımının ana fonksiyonunu değiştirmez; çalışanın tecrübesine veya kariyer basamağına işaret eder.
+    
+- **Örnek:** *"Mühendis", "Uzman Mühendis", "Kıdemli Mühendis", "Kıdemli Lider Mühendis", "Baş Mühendis"*.
+    
+
+#### C. Pozisyon (Position / Headcount Slot)
+
+Pozisyon, bir personelin organizasyon ağacında **tam olarak nerede durduğunu, hangi birimde yer aldığını, hangi görev tanımını yürüttüğünü ve kime (hangi amire) bağlı olduğunu** gösteren somut organizasyonel hücredir.
+
+- - **Özelliği:** Dinamiktir, kadro (headcount) karşılığıdır ve tekil bir konum belirtir.
+        
+        ```
+        - **Formül:**
+            
+            Pozisyon = Birim + Görev Tanımı + Personel
+            
+        - **Örnek:**
+            
+            Pozisyon = Montaj Üretim Birimi + Mühendis + Ali Korkmaz
+        ```
+        
+
+Farklı departmanlarda aynı görev tanımına sahip çalışanlar bulunabilir. Örneğin Kalıp Üretim Birimi'nde çalışan bir mühendis ile Montaj Üretim Birimi'nde çalışan bir mühendis aynı Görev Tanımına (*Mühendis*) sahiptir; fakat bulundukları Birim ve bağlı oldukları Amir farklı olduğu için **Pozisyonları tamamen farklıdır**.
+
+### 2\. Unvan ve Görev Tanımı Karmaşasını Önleme Mimarisi
+
+Birçok kuruluşta karşılaştığım en büyük esneklik kaybı, Unvanlar ile Görev Tanımlarının birleştirilmesidir. Eğer her unvan değişikliği için ayrı bir görev tanımı oluşturursanız, organizasyonunuz büyüdükçe kontrol edilemez bir dokümantasyon çöplüğü ile karşı karşıya kalırsınız.
+
+#### Hatalı Yaklaşım (Veri Tekrarı ve Karmaşa)
+
+Eğer *"Mühendis"*, *"Uzman Mühendis"*, *"Kıdemli Mühendis"*, *"Kıdemli Lider Mühendis"* ve *"Baş Mühendis"* kavramlarının her biri için ayrı ayrı Görev Tanımı dokümanı oluşturulursa:
+
+1.  Toplamda **5 ayrı görev tanımı dokümanı** hazırlamak ve onaylatmak gerekir.
+    
+2.  Temel bir süreç değiştiğinde veya ortak bir yetki güncellendiğinde, 5 ayrı dokümanın tek tek revize edilmesi gerekir.
+    
+3.  İK ve Kalite ekipleri sürekli doküman takip etmek zorunda kalır ve versiyon hataları yaşanır.
+    
+
+#### Doğru Yaklaşım (Modüler Veri Tasarımı)
+
+Doğru mimaride sadece **tek bir "Mühendis" Görev Tanımı** oluşturulur. Bu ana dokümanın veya veri setinin içerisinde, unvanlara/kıdemlere göre ek sorumluluklar ve yetki matrisleri alt bölümler halinde tanımlanır:
+
+- **Mühendis Görev Tanımı (Ana Doküman)**
+    
+    - **Genel Sorumluluklar:** *Tüm mühendis kadrosu için geçerli temel fonksiyonlar.*
+        
+    - **Kıdem ve Unvan Kırılımları:**
+        
+        - *Mühendis / Uzman Mühendis:* Operasyonel süreçlerin yürütülmesi.
+            
+        - *Kıdemli / Baş Mühendis:* Operasyonel süreçlere ek olarak mentörlük, teknik onay yetkisi ve proje liderliği.
+            
+
+```
++--------------------------------------------------------------------+
+|                   GÖREV TANIMI: MÜHENDİS (Sürdürülebilir Yapı)     |
++--------------------------------------------------------------------+
+| - Temel Fonksiyonlar & Sorumluluklar (Ortak)                       |
+|                                                                    |
+|  [ Ek Seviye Sorumlulukları ]                                      |
+|  ├── Mühendis           : Operasyonel analiz ve uygulama           |
+|  ├── Kıdemli Mühendis   : Proje takibi ve teknik rehberlik         |
+|  └── Baş Mühendis       : Teknik onay, strateji ve mentörlük       |
++--------------------------------------------------------------------+
+```
+
+##### Bu Yapının Avantajları:
+
+- **Efor Tasarrufu:** 5 farklı doküman yönetmek yerine tek bir esnek doküman yönetilir.
+    
+- **Süreç Kolaylığı:** İleride şirket unvan yapısını güncellediğinde (örneğin *"Uzman"* kademesi kaldırıldığında veya yeni bir kademe eklendiğinde), görev tanımı dokümantasyonunu baştan aşağı değiştirmek gerekmez.
+    
+- **Yazılım Entegrasyonu Kolaylığı:** Yazılımlar arası veri aktarımında (API / Veritabanı entegrasyonlarında) ek kodlama veya karmaşık esleme (mapping) tablolarına ihtiyaç duyulmaz.
+    
+
+### 3\. Çoklu Pozisyon Yönetimi ve Birincil Pozisyon (Primary Position) Kritikliği
+
+Gelişen organizasyonlarda çalışanlar sıklıkla birden fazla görev veya rolleri eş zamanlı olarak üstlenirler. Örneğin bir çalışan, esas görev yeri olan *Kalite Güvence Birimi* dışında, geçici veya sürekli olarak *İş Sağlığı ve Güvenliği Kurulu Üyeliği* veya *Proje Yöneticisi* pozisyonunu da yürütebilir.
+
+```
+                         +--------------------------+
+                         |   ÇALIŞAN: Zeynep Demir  |
+                         +--------------------------+
+                                      |
+             +------------------------+-------------------------+
+            |                                                   |
+            v                                                   v
++------------------------+                           +-----------------------+
+| Birincil (Primary)     |                           | İkincil (Secondary)   |
+| Pozisyon               |                           | Pozisyon              |
++------------------------+                           +-----------------------+
+| Birim: Kalite Güvence  |                           | Birim: İSG Kurulu     |
+| Görev: Kalite Mühendisi|                           | Görev: Kurul Üyesi    |
+| [X] İŞ AKIŞI ONAYLARI  |                           | [ ] Sadece Rol Tanımı |
++------------------------+                           +-----------------------+
+```
+
+Bu noktada dijital sistemlerde yaşanan en büyük entegrasyon ve iş akışı problemi, **Birincil / Asil / Esas Pozisyon (Primary Position)** bilgisinin veritabanında net olarak tanımlanmamasıdır.
+
+#### Birincil Pozisyon İşaretlenmezse Ne Olur?
+
+Eğer sistemde bir personelin birden fazla pozisyon kaydı varysa ve hangisinin **Birincil Pozisyon** olduğu belirtilmemişse:
+
+- **İş Akışlarında Hatalar:** Dijital onay sistemleri (Satın alma onayı, izin talebi, masraf onayı vb.) personelin amir onayına gideceğinde, hangi pozisyonun amirini baz alacağını bilemez.
+    
+- **Rastgele Veri Seçimi:** Yazılımlar veritabanından sorgu çekerken genellikle ilk kaydı veya rastgele bir kaydı seçer. Bu durum, bir izin talebinin yanlış birim amirine gitmesine veya yetkisiz kişilerin onay mekanizmasına dahil olmasına yol açar.
+    
+- **Raporlama Hataları:** Bütçe ve kadro (headcount) raporlarında çalışan mükerrer sayılarak norm kadro hesaplamalarını bozar.
+    
+
+#### Çözüm: Veri Yapısında "IsPrimary" Standardı
+
+Organizasyon veritabanı mimarisinde, her pozisyon ataması için mutlaka `Birincil_Pozisyon_Mı` (Boolean: `True`/`False` veya `1`/`0`) alanı bulunmalıdır. İş akışı ve yetkilendirme motorları varsayılan olarak her zaman bu `Primary` etiketi taşıyan pozisyonu referans almalıdır.
+
+### 4\. Dijital Entegrasyonlar ve Veri İşleme Kuralları (Data Governance)
+
+Veri işleme kurallarına uygun oluşturulmayan bir organizasyon verisi, lokal bir İK programında düzgün çalışıyor gibi görünse de, kurumsal yazılım ekosistemine dahil edildiğinde (ERP, CRM, LMS, DYS, Active Directory / Entra ID) büyük entegrasyon krizlerine sebep olur.
+
+Aşağıdaki tablo, genel veri işleme kurallarına uyulmadığında karşılaşılan temel entegrasyon sorunlarını ve çözüm standartlarını özetlemektedir:
+
+<div class="joplin-table-wrapper"><table data-path-to-node="48" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin: 0px !important 0px !important 32px 0px !important;" class="jop-noMdConv"><thead style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><tr style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><td style="border: 1px solid rgb(196, 199, 197); padding: 8px 12px; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><strong style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin: 0px !important;" class="jop-noMdConv">Hata: Hatalı Veri İşleme</strong></td><td style="border: 1px solid rgb(196, 199, 197); padding: 8px 12px; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><strong style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin: 0px !important;" class="jop-noMdConv">Problem: Oluşan Entegrasyon / Sistem Problemi</strong></td><td style="border: 1px solid rgb(196, 199, 197); padding: 8px 12px; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><strong style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin: 0px !important;" class="jop-noMdConv">Çözüm: Genel Veri İşleme Standardı</strong></td></tr></thead><tbody style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><tr style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><td style="border: 1px solid rgb(196, 199, 197); padding: 8px 12px; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><span data-path-to-node="48,1,0,0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class=""><b data-path-to-node="48,1,0,0" data-index-in-node="0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv">Açık Metin Metinsel Bağlantılar:</b> Amir veya birim bilgisini metin (string) olarak tutmak (<i data-path-to-node="48,1,0,0" data-index-in-node="89" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv">Örn: "Ahmet Yılmaz'a Bağlı"</i>).</span></td><td style="border: 1px solid rgb(196, 199, 197); padding: 8px 12px; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><span data-path-to-node="48,1,1,0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="">Çalışan adı değiştiğinde, işten çıktığında veya yazım hatası yapıldığında tüm bağ kopar.</span></td><td style="border: 1px solid rgb(196, 199, 197); padding: 8px 12px; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><span data-path-to-node="48,1,2,0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class=""><b data-path-to-node="48,1,2,0" data-index-in-node="0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv">Tekil ID (UUID/GUID) Kullanımı:</b> Tüm personel, birim, görev ve pozisyonlar değişmez id kodları ile eşleştirilmelidir.</span></td></tr><tr style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><td style="border: 1px solid rgb(196, 199, 197); padding: 8px 12px; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><span data-path-to-node="48,2,0,0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class=""><b data-path-to-node="48,2,0,0" data-index-in-node="0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv">Geçmiş Verinin Silinmesi:</b> Pozisyon veya birim değişikliklerinde eski kaydın üzerine yazılması (<i data-path-to-node="48,2,0,0" data-index-in-node="95" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv">Overwrite</i>).</span></td><td style="border: 1px solid rgb(196, 199, 197); padding: 8px 12px; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><span data-path-to-node="48,2,1,0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="">Tarihsel raporlama imkansız hale gelir. Geçmişe dönük onay zincirleri ve denetim izleri (Audit Trail) kaybolur.</span></td><td style="border: 1px solid rgb(196, 199, 197); padding: 8px 12px; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><span data-path-to-node="48,2,2,0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class=""><b data-path-to-node="48,2,2,0" data-index-in-node="0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv">Efektif Tarihli Veri Modeli (Effective Dating):</b> Her kaydın <code data-path-to-node="48,2,2,0" data-index-in-node="59" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv">Başlangıç_Tarihi</code> ve <code data-path-to-node="48,2,2,0" data-index-in-node="79" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv">Bitiş_Tarihi</code> olmalıdır.</span></td></tr><tr style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><td style="border: 1px solid rgb(196, 199, 197); padding: 8px 12px; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><span data-path-to-node="48,3,0,0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class=""><b data-path-to-node="48,3,0,0" data-index-in-node="0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv">Serbest Metin Girişi:</b> Departman veya görev isimlerinin elle yazılması (<i data-path-to-node="48,3,0,0" data-index-in-node="71" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv">Örn: "İ.K.", "İnsan Kaynakları", "IK"</i>).</span></td><td style="border: 1px solid rgb(196, 199, 197); padding: 8px 12px; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><span data-path-to-node="48,3,1,0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="">Sistemler arası veri eşleme (mapping) imkansızlaşır; mükerrer ve hatalı kategoriler oluşur.</span></td><td style="border: 1px solid rgb(196, 199, 197); padding: 8px 12px; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><span data-path-to-node="48,3,2,0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class=""><b data-path-to-node="48,3,2,0" data-index-in-node="0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv">Master Data Management (MDM):</b> Tanımların kapalı liste (Lookup Table / Enum) olarak yönetilmesi.</span></td></tr><tr style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><td style="border: 1px solid rgb(196, 199, 197); padding: 8px 12px; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><span data-path-to-node="48,4,0,0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class=""><b data-path-to-node="48,4,0,0" data-index-in-node="0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv">Hiyerarşik Döngüler (Circular Reference):</b> A amiri B'ye, B amiri C'ye, C amiri A'ya bağlı tanımlanması.</span></td><td style="border: 1px solid rgb(196, 199, 197); padding: 8px 12px; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><span data-path-to-node="48,4,1,0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="">İş akışı motorları sonsuz döngüye (infinite loop) girerek sistemleri kilitler.</span></td><td style="border: 1px solid rgb(196, 199, 197); padding: 8px 12px; font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv"><span data-path-to-node="48,4,2,0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class=""><b data-path-to-node="48,4,2,0" data-index-in-node="0" style="font-family: Google Sans Text, sans-serif !important; line-height: 1.15 !important; margin-top: 0px !important; margin-left: 0px !important; margin-right: 0px !important;" class="jop-noMdConv">Ağaç/Hiyerarşi Doğrulama Algoritmaları:</b> Veri girişinde dairesel bağımlılığı engelleyen veri doğrulama (validation) kuralları.</span></td></tr></tbody></table></div>
+
+### 5\. Kalite Yönetim Sistemleri (ISO 9001 vb.) Açısından Organizasyon Verisi
+
+Organizasyon verisi yalnızca İK ve İT süreçlerini değil, aynı zamanda kuruluşun **Kalite Yönetim Sistemi (KYS)** uyumluluğunu da doğrudan etkiler. ISO 9001:2015 standartlarının *"7.1.2 Kişiler"*, *"5.3 Kurumsal Rolü, Sorumluluklar ve Yetkiler"* ve *"7.5 Dokümante Edilmiş Bilgi"* maddeleri, organizasyonel yapının net, izlenebilir ve güncel olmasını şart koşar.
+
+#### Kalite Standartları Açısından Dikkat Edilmesi Gereken Yasal ve Operasyonel Detaylar:
+
+1.  **İzlenebilirlik ve Versiyon Kontrolü:** Görev tanımları kalite dokümanı statüsündedir. Her görev tanımının bir Revizyon Numarası ve Revizyon Tarihi olmalıdır.
+    
+2.  **Yetki ve Sorumluluk Matrisleri:** Hangi pozisyonun hangi süreçte onay yetkisine sahip olduğu, organizasyon şemasındaki hiyerarşik bağlar ile %100 örtüşmelidir.
+    
+3.  **Vekalet Yönetimi (Proxy Management):** Bir pozisyon sahibinin izinli veya görevli olduğu durumlarda yetkilerini geçici olarak hangi pozisyona devredeceği (Vekalet Pozisyonu) organizasyon veri mimarisinde önceden tanımlanmalıdır.
+    
+
+### 6\. Adım Adım Sürdürülebilir Organizasyon Verisi Yapılandırma Rehberi
+
+Kuruluşunuzda sıfırdan veya mevcut veriyi iyileştirerek genel veri işleme kurallarına uygun bir organizasyon mimarisi kurmak istiyorsanız, aşağıdaki adımları sırasıyla uygulamanız önerilir:
+
+#### Adım 1: Veri Sözlüğünü (Data Dictionary) Oluşturun
+
+İlk olarak şirketinizde *Birim, Departman, Görev Tanımı, Unvan, Pozisyon, Kadro* kavramlarının ne anlama geldiğini netleştiren ve tüm departmanların ortak dilde buluşmasını sağlayan kurumsal veri sözlüğünü yayımlayın.
+
+#### Adım 2: Görev Tanımlarını Sadeleştirin ve Konsolide Edin
+
+Unvan bazlı değil, **fonksiyon bazlı** görev tanımları oluşturun. Birbiriyle %80 oranında benzer işleri yapan kadroları tek bir ana görev tanımı altında toplayıp, kıdem farklarını doküman içi katmanlarla yönetin.
+
+#### Adım 3: Pozisyon Tablosunu Bağımsız Bir Varlık Olarak Tasarlayın
+
+Pozisyon veritabanınızı şu asgari alanları içerecek şekilde mimari hale getirin:
+
+- `Pozisyon_ID` (Unique Identifier)
+    
+- `Birim_ID` (Bağlı Olduğu Organizasyonel Birim)
+    
+- `Gorev_Tanimi_ID` (Bağlı Olduğu Görev Tanımı)
+    
+- `Ust_Pozisyon_ID` (Hiyerarşik Olarak Bağlı Olduğu Amir Pozisyonu)
+    
+- `Personel_ID` (Atanan Çalışan - Boş ise "Açık Kadro")
+    
+- `Birincil_Pozisyon_Mu` (Boolean: Evet / Hayır)
+    
+- `Baslangic_Tarihi` / `Bitis_Tarihi` (Tarihsel İzlenebilirlik)
+    
+- Opsiyon: `Vekalet` eden `Pozisyon` bilgisi de kullanılabilir.
+    
+
+#### Adım 4: Veri Girişi Kurallarını ve Entegrasyon Katmanını Sıkılaştırın
+
+Kullanıcıların veya İK yöneticilerinin serbest metin (free text) şeklinde veri girmesini engelleyin. Tüm birim ve görev isimlerinin önceden tanımlanmış kod listelerinden seçilmesini sağlayın. Entegrasyonlarda ilişkilendirmeleri metinler üzerinden değil, benzersiz sistem ID'leri üzerinden kurun.
+
+#### Adım 5: Düzenli Veri Temizliği ve Denetim (Data Auditing) Süreçleri İşletin
+
+Belirli periyotlarla (örneğin 6 ayda bir) sistemde amirsiz kalmış pozisyonlar (orphan positions), dairesel amir bağımlılıkları veya birincil pozisyonu seçilmemiş mükerrer atamalar için otomatik veri denetim raporları çalıştırın.
+
+### Özet Olarak
+
+Organizasyon şemasını düzenlemek, sadece kutuları yan yana koyup aralarına çizgiler çekmekten ibaret bir tasarım çalışması değildir. Doğru bir organizasyon verisi mimarisi; **İnsan Kaynakları yönetimi, Kalite standartları, İş Süreçleri Yönetimi (BPM) ve Bilgi Teknolojileri entegrasyonlarının kesişim noktasında yer alan stratejik bir altyapıdır.**
+
+Görev Tanımı ile Pozisyon kavramlarını birbirinden ayırmak, Unvan ve Görev Tanımı enflasyonunun önüne geçerek esnek görev tanımları oluşturmak, çoklu pozisyonlarda Birincil Pozisyon mantığını sisteme oturtmak ve tüm bu yapıyı genel veri işleme standartlarına uygun tekil kimlikler (ID) üzerinden dijitalleştirmek; organizasyonunuz ne kadar büyürse büyüsün verinizin sağlıklı, yönetilebilir ve entegre kalmasını sağlayacaktır.
+
+Bugün atılacak bu doğru veri mimarisi adımları, yarın kuruluşunuzun dijital dönüşüm yolculuğundaki en büyük güvencesi olacaktır.
+
+<Info>Bu konuyla ilgili olarak Danışmanlık Hizmeti almak isterseniz **"[İletişim](/contact)"** kanallarından bana ulaşabilirsiniz. Çalıştığım projeler ve kuruluşlara **"[Projeler](/project)"** sayfasından bakabilirsiniz.</Info>
