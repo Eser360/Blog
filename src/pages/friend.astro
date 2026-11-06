@@ -7,7 +7,6 @@ import FriendCard from "@/components/mdx/FriendCard.astro";
 import Card from "@/components/temple/Card.astro";
 import CardGroup from "@/components/temple/CardGroup.astro";
 import Showcase from "@/components/mdx/Showcase.astro";
-
 ---
 
 <BaseLayout title="Blogroll">
@@ -17,63 +16,74 @@ import Showcase from "@/components/mdx/Showcase.astro";
     textOverlay="BLOGROLL"
     infoIcon="lucide:link"
   >
-  <div class="space-y-10">
-    <!-- Friends Section -->
-    <section>
-      <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-        <Icon name="lucide:users" class="w-6 h-6 text-primary" />
-        <span>Web Sitelerim</span>
-      </h2>
+    <div class="space-y-10">
+      <!-- Friends Section -->
+      <section>
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+          <Icon name="lucide:users" class="w-6 h-6 text-primary" />
+          <span>Web Sitelerim</span>
+        </h2>
 
-      <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6">
-        <FriendCard
-          name="Hayalmeyal"
-          avatar="/image/hmkare.png"
-          description="Bisiklet üzerine her şeyi konuşan, Açık kaynak yazılımlar ve Linux hakkında paylaşımlar yapan, Sinema, Dizi, Müzik ve Kitap listeleri bulabileceğiniz, eski nesil blog."
-          url="https://hayalmeyal.org"
-          type="friend"
-        />
+        <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6">
+          <FriendCard
+            name="Hayalmeyal"
+            avatar="/image/hmkare.png"
+            description="Bisiklet üzerine her şeyi konuşan, Açık kaynak yazılımlar ve Linux hakkında paylaşımlar yapan, Sinema, Dizi, Müzik ve Kitap listeleri bulabileceğiniz, eski nesil blog."
+            url="https://hayalmeyal.org"
+            type="friend"
+          />
+        </div>
+      </section>
+
+      <!-- Arkadaşlar -->
+      <section>
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+          <Icon name="lucide:git-pull-request" class="w-6 h-6 text-primary" />
+          <span>Arkadaşlar</span>
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6">
+          <FriendCard
+            name="Serdar Yavuz"
+            avatar="https://github.com/rserdar.png"
+            description="Serdar Yavuz'un 2005 yılından günümüze yazmaya çalıştığı Blog sayfası. Hayret bu sefer üşenmemiş ve bir şeyler yazmış. Enteresan..."
+            url="https://serdar.cc"
+            type="contributor"
+          />
+        </div>
+      </section>
+
+      <!-- Takip Ettiğim Bloglar -->
+      <section>
+        <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
+          <Icon name="lucide:git-pull-request" class="w-6 h-6 text-primary" />
+          <span>Takip Ettiğim Bloglar</span>
+        </h2>
+
+        <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6">
+          <FriendCard
+            name="Yücel Toluyağ "
+            avatar="https://yuceltoluyag.github.io/images/16064131.jpeg"
+            description="Yücel Toluyağ tarafından yazılan blog. Linux oyuncusu, Python aşığı ve teknoloji meraklısı..."
+            url="https://yuceltoluyag.github.io"
+            type="contributor"
+          />
+        </div>
+      </section>
+
+      <div class="divider my-8">
+        <Icon name="lucide:heart" class="w-10 h-10 text-primary" />
       </div>
-    </section>
 
-    <!-- Arkadaşlar -->
-    <section>
-      <h2 class="text-2xl font-bold mb-6 flex items-center gap-2">
-        <Icon name="lucide:git-pull-request" class="w-6 h-6 text-primary" />
-        <span>Arkadaşlar</span>
-      </h2>
-
-      <div class="grid grid-cols-1 sm:grid-cols-1 md:grid-cols-3 gap-6">
-        <FriendCard
-          name="Serdar Yavuz"
-          avatar="https://github.com/rserdar.png"
-          description="Serdar Yavuz'un 2005 yılından günümüze yazmaya çalıştığı Blog sayfası. Hayret bu sefer üşenmemiş ve bir şeyler yazmış. Enteresan..."
-          url="https://serdar.cc"
-          type="contributor"
-        />
+      <div class="text-center">
+        <p class="text-base-content/80 mb-4">
+          Bu sayfada yer almak ister misiniz? Bana ulaşmaktan ve sayfanızın linkini paylaşmaktan çekinmeyin!
+        </p>
+        <a href="/contact" rel="noopener noreferrer" class="btn btn-primary gap-2">
+          <Icon name="lucide:mail" class="w-5 h-5" />
+          <span>İletişime Geçin</span>
+        </a>
       </div>
-    </section>
-
-
-
-    <div class="divider my-8">
-      <Icon name="lucide:heart" class="w-10 h-10 text-primary" />
     </div>
-
-    <div class="text-center">
-      <p class="text-base-content/80 mb-4">
-        Bu sayfada yer almak ister misiniz? Bana ulaşmaktan ve sayfanızın linkini paylaşmaktan çekinmeyin!
-      </p>
-      <a
-        href="/contact"
-        rel="noopener noreferrer"
-        class="btn btn-primary gap-2"
-      >
-        <Icon name="lucide:mail" class="w-5 h-5" />
-        <span>İletişime Geçin</span>
-      </a>
-    </div>
-  </div>
-    </Card>
-  </CardGroup>
+  </MainCard>
 </BaseLayout>
