@@ -56,7 +56,7 @@ export async function getCategoryPaginationPaths({ paginate }: { paginate: any }
 }
 
 /**
- * "Kitaplar" kategorisine veya etiketine sahip blog yazılarının sayfalama verilerini getirir
+ * "Kitaplık" kategorisine veya etiketine sahip blog yazılarının sayfalama verilerini getirir
  * @param paginate Astro sayfalama (paginate) fonksiyonu
  * @param pageSize Sayfa başına yazı sayısı (varsayılan: 7 veya BLOG_PAGE_SIZE)
  * @returns Sayfalama yolu verileri
@@ -65,8 +65,8 @@ export async function getBooksPaginationPaths({ paginate, pageSize = BLOG_PAGE_S
   const allPosts = await getAllPosts();
   const bookPosts = allPosts.filter(
     post =>
-      post.data.categories?.some((cat: string) => cat.toLowerCase() === "kitaplar")
-      || post.data.tags?.some((tag: string) => tag.toLowerCase() === "kitaplar"),
+      post.data.categories?.some((cat: string) => cat.toLowerCase() === "kitaplık")
+      || post.data.tags?.some((tag: string) => tag.toLowerCase() === "kitaplık"),
   );
   const sortedBookPosts = sortPostsByDate(bookPosts);
   const postsWithStats = await getPostsWithStats(sortedBookPosts);
