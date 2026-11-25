@@ -42,6 +42,66 @@ export function sortPostsByPinAndDate(posts: CollectionEntry<"blog">[]): Collect
 }
 
 /**
+ * Belirli bir blog yazısı için kategori ve etiket eşleşmesine göre en benzer yazıları döndürür.
+ * Hem aynı kategoriye hem de aynı etikete sahip yazılar önceliklendirilir; ardından
+ * kategori veya etiket paylaşan diğer yazılar toplam eşleşme sayısı ve tarihe göre sıralanır.
+ */
+export function getRelatedPosts(
+  currentPost: CollectionEntry<"blog">,
+  posts: CollectionEntry<"blog">[],
+  maxPosts = 4,
+): CollectionEntry<"blog">[] {
+  const currentCategories = new Set(currentPost.data.categories ?? []);
+  const currentTags = new Set(currentPost.data.tags ?? []);
+
+  if (currentCategories.size === 0 && currentTags.size === 0) {
+    return [];
+  }
+
+  const candidates = posts
+    .filter((post) => post.slug !== currentPost.slug)
+    .map((post) => {
+      const postCategories: string[] = post.data.categories ?? [];
+      const postTags: string[] = post.data.tags ?? [];
+      const sharedCategories = postCategories.filter((category: string) =>
+        currentCategories.has(category),
+      ).length;
+      const sharedTags = postTags.filter((tag: string) =>
+        currentTags.has(tag),
+      ).length;
+
+      return {
+        post,
+        sharedCategories,
+        sharedTags,
+        bothMatch: sharedCategories > 0 && sharedTags > 0 ? 1 : 0,
+        totalOverlap: sharedCategories + sharedTags,
+        pubTime: new Date(post.data.pubDate).getTime(),
+      };
+    })
+    .filter((item) => item.totalOverlap > 0);
+
+  return candidates
+    .toSorted((a, b) => {
+      if (b.bothMatch !== a.bothMatch) {
+        return b.bothMatch - a.bothMatch;
+      }
+      if (b.totalOverlap !== a.totalOverlap) {
+        return b.totalOverlap - a.totalOverlap;
+      }
+      if (a.bothMatch === 1 && b.sharedTags !== a.sharedTags) {
+        return b.sharedTags - a.sharedTags;
+      }
+      if (a.bothMatch === 0 && b.sharedCategories !== a.sharedCategories) {
+        return b.sharedCategories - a.sharedCategories;
+      }
+      return b.pubTime - a.pubTime;
+    })
+    .slice(0, maxPosts)
+    .map((item) => item.post);
+}
+
+/**
  * 获取所有文章标签并统计每个标签的数量
  * @param posts 文章集合
  * @returns 标签映射 (标签名 -> 计数)
