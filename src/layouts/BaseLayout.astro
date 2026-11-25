@@ -33,27 +33,45 @@ const {
 
     <script define:vars={{ SITE_THEME }} is:inline>
       (function () {
-        const storedTheme = localStorage.getItem("theme");
-        const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
-        let theme;
-        if (storedTheme) {
-          theme = storedTheme;
-        } else {
-          theme = prefersDark ? SITE_THEME.dark : SITE_THEME.light;
-          localStorage.setItem("theme", theme);
+        function getStoredTheme() {
+          try {
+            const value = localStorage.getItem("theme");
+            return value === SITE_THEME.light || value === SITE_THEME.dark ? value : null;
+          } catch {
+            return null;
+          }
         }
-        document.documentElement.setAttribute("data-theme", theme);
-        const themeType = theme === SITE_THEME.dark ? "dark" : "light";
-        document.documentElement.setAttribute("data-theme-type", themeType);
-        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", (e) => {
-          if (!localStorage.getItem("theme")) {
-            const newTheme = e.matches ? SITE_THEME.dark : SITE_THEME.light;
-            document.documentElement.setAttribute("data-theme", newTheme);
-            const newThemeType = e.matches ? "dark" : "light";
-            document.documentElement.setAttribute("data-theme-type", newThemeType);
-            localStorage.setItem("theme", newTheme);
+
+        function applyTheme() {
+          const storedTheme = getStoredTheme();
+          const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+          const theme = storedTheme ?? (prefersDark ? SITE_THEME.dark : SITE_THEME.light);
+          const themeType = theme === SITE_THEME.dark ? "dark" : "light";
+          const metaScheme = storedTheme ? themeType : "light dark";
+
+          document.documentElement.setAttribute("data-theme", theme);
+          document.documentElement.setAttribute("data-theme-type", themeType);
+          const colorSchemeMeta = document.querySelector('meta[name="color-scheme"]');
+          if (colorSchemeMeta) {
+            colorSchemeMeta.setAttribute("content", metaScheme);
+          }
+        }
+
+        applyTheme();
+
+        window.matchMedia("(prefers-color-scheme: dark)").addEventListener("change", () => {
+          if (!getStoredTheme()) {
+            applyTheme();
           }
         });
+
+        window.addEventListener("storage", (event) => {
+          if (event.key === "theme" || event.key === null) {
+            applyTheme();
+          }
+        });
+
+        document.addEventListener("astro:after-swap", applyTheme);
       })();
     </script>
     <!-- Telemetry  -->
@@ -86,17 +104,6 @@ const {
     </div>
 
     <MobileTOC headings={headings} showTOC={showTOC} />
-
-    <script define:vars={{ SITE_THEME }} is:inline>
-      document.addEventListener("astro:after-swap", () => {
-        const storedTheme = localStorage.getItem("theme");
-        if (storedTheme) {
-          document.documentElement.setAttribute("data-theme", storedTheme);
-          const themeType = storedTheme === SITE_THEME.dark ? "dark" : "light";
-          document.documentElement.setAttribute("data-theme-type", themeType);
-        }
-      });
-    </script>
 
     <script is:inline>
       document.addEventListener("astro:page-load", () => {

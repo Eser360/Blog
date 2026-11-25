@@ -3,14 +3,17 @@
 @tailwind components;
 @tailwind utilities;
 
-/* Color scheme configuration to prevent Chrome's auto dark theme */
-:root,
-[data-theme-type="light"] {
+/* Color scheme configuration synchronized with <meta name="color-scheme"> */
+:root {
   color-scheme: light dark; /* This prevents Chrome's auto dark theme from taking effect */
-}
 
-[data-theme-type="dark"] {
-  color-scheme: dark;
+  &:has(> head > meta[name="color-scheme"][content="dark"]) {
+    color-scheme: dark;
+  }
+
+  &:has(> head > meta[name="color-scheme"][content="light"]) {
+    color-scheme: light;
+  }
 }
 
 /* Global styles with nesting support */

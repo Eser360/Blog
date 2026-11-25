@@ -20,7 +20,7 @@ export async function getAllPosts(): Promise<CollectionEntry<"blog">[]> {
  * @returns 排序后的文章
  */
 export function sortPostsByDate(posts: CollectionEntry<"blog">[]): CollectionEntry<"blog">[] {
-  return [...posts].sort(
+  return posts.toSorted(
     (a: CollectionEntry<"blog">, b: CollectionEntry<"blog">) =>
       new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime(),
   );

@@ -37,8 +37,8 @@ const totalCategories = categoryMap.size;
 const totalPosts = allPosts.length;
 
 // Son eklenen 5 yazı
-const recentPosts = [...allPosts]
-  .sort((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
+const recentPosts = allPosts
+  .toSorted((a, b) => new Date(b.data.pubDate).getTime() - new Date(a.data.pubDate).getTime())
   .slice(0, 5);
 ---
 

@@ -448,17 +448,16 @@ const repoUrl = repositoryName ? `https://github.com/${username}/${repositoryNam
       const graphContainer = graphSection.querySelector(".grid");
       if (!graphContainer) return;
 
-      // Clear the skeleton loaders
-      graphContainer.innerHTML = "";
-
-      // Create 7 x 8 grid (past 8 weeks) with random data
+      // Replace skeleton loaders atomically without invoking the HTML parser
+      const days: HTMLDivElement[] = [];
       for (let i = 0; i < 56; i++) {
         const day = document.createElement("div");
         const randomIntensity = Math.floor(Math.random() * 5); // 0-4 intensity levels
         day.className = `w-3 h-3 rounded-sm bg-primary opacity-${randomIntensity * 20 || 10}`;
         day.title = `${randomIntensity} commits`;
-        graphContainer.appendChild(day);
+        days.push(day);
       }
+      graphContainer.replaceChildren(...days);
     }
 
     showError(message: string) {

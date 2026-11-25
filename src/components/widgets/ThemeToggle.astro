@@ -49,33 +49,57 @@ const { className = "" } = Astro.props as ThemeToggleProps;
     const themeToggle = document.getElementById(uniqueId);
     if (!themeToggle) return;
 
-    const currentTheme = document.documentElement.getAttribute("data-theme");
+    const syncToggleIcons = () => {
+      const isDark = document.documentElement.getAttribute("data-theme") === SITE_THEME.dark;
+      document.querySelectorAll("[data-theme-toggle]").forEach((toggle) => {
+        updateThemeIcons(toggle, isDark);
+      });
+    };
 
     // Initialize icon state based on current theme
-    updateThemeIcons(themeToggle, currentTheme === SITE_THEME.dark);
+    updateThemeIcons(themeToggle, document.documentElement.getAttribute("data-theme") === SITE_THEME.dark);
+
+    // Keep toggle icons in sync when another tab updates the theme override
+    window.addEventListener("storage", (event) => {
+      if (event.key === "theme" || event.key === null) {
+        queueMicrotask(syncToggleIcons);
+      }
+    });
 
     // Toggle theme on click
     themeToggle.addEventListener("click", () => {
-      const currentTheme = document.documentElement.getAttribute("data-theme");
-      const newTheme = currentTheme === SITE_THEME.light ? SITE_THEME.dark : SITE_THEME.light;
+      const currentIsDark = document.documentElement.getAttribute("data-theme") === SITE_THEME.dark;
+      const targetIsDark = !currentIsDark;
+      const newTheme = targetIsDark ? SITE_THEME.dark : SITE_THEME.light;
+      const themeType = targetIsDark ? "dark" : "light";
+      const systemIsDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
 
       // Add animation class
       themeToggle.classList.add("animate-spin-once");
 
       // Set new theme
       document.documentElement.setAttribute("data-theme", newTheme);
-
-      // Set theme type based on which theme is active
-      const themeType = newTheme === SITE_THEME.dark ? "dark" : "light";
       document.documentElement.setAttribute("data-theme-type", themeType);
 
-      localStorage.setItem("theme", newTheme);
+      // Persist explicit override or remove when returning to system default
+      const metaScheme = targetIsDark === systemIsDark ? "light dark" : themeType;
+      const colorSchemeMeta = document.querySelector('meta[name="color-scheme"]');
+      if (colorSchemeMeta) {
+        colorSchemeMeta.setAttribute("content", metaScheme);
+      }
+
+      try {
+        if (targetIsDark === systemIsDark) {
+          localStorage.removeItem("theme");
+        } else {
+          localStorage.setItem("theme", newTheme);
+        }
+      } catch {
+        // Ignore storage restrictions; in-memory theme state is still updated
+      }
 
       // Update icons for all theme toggles on the page
-      const allToggles = document.querySelectorAll("[data-theme-toggle]");
-      allToggles.forEach((toggle) => {
-        updateThemeIcons(toggle, newTheme === SITE_THEME.dark);
-      });
+      syncToggleIcons();
 
       // Remove animation class after animation completes
       setTimeout(() => {

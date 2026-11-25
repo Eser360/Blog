@@ -35,10 +35,7 @@ const domain = new URL(url).hostname;
       const dot = dotContainer.querySelector("div");
       if (!dot) return;
 
-      const controller = new AbortController();
-      const timeoutId = setTimeout(() => controller.abort(), 5000);
-
-      fetch(url, { method: "HEAD", mode: "no-cors", signal: controller.signal })
+      fetch(url, { method: "HEAD", mode: "no-cors", signal: AbortSignal.timeout(5000) })
         .then(() => {
           dot.classList.remove("bg-gray-400");
           dot.classList.add("bg-green-500");
@@ -48,9 +45,6 @@ const domain = new URL(url).hostname;
           dot.classList.remove("bg-gray-400");
           dot.classList.add("bg-red-500");
           dotContainer.setAttribute("title", "Offline or unreachable");
-        })
-        .finally(() => {
-          clearTimeout(timeoutId);
         });
     });
   });

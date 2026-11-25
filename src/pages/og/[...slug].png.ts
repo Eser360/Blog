@@ -44,19 +44,8 @@ function validateSlug(slug: unknown): slug is string {
   return /^[a-z0-9\-/]+$/i.test(slug);
 }
 
-function createTimeoutSignal(timeoutMs: number) {
-  const controller = new AbortController();
-  const timeout = setTimeout(() => controller.abort(), timeoutMs);
-  return { signal: controller.signal, clear: () => clearTimeout(timeout) };
-}
-
 async function fetchWithTimeout(input: RequestInfo | URL, timeoutMs: number) {
-  const { signal, clear } = createTimeoutSignal(timeoutMs);
-  try {
-    return await fetch(input, { signal });
-  } finally {
-    clear();
-  }
+  return await fetch(input, { signal: AbortSignal.timeout(timeoutMs) });
 }
 
 async function buildAvatarDataUri(): Promise<string> {
