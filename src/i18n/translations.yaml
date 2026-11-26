@@ -88,11 +88,11 @@ tr:
     allTags: Tüm Etiketler
     allCategories: Toplam Kategori
     post: yazı
-    posts: Yazılar
+    posts: Yazı
     tagDescription: Bu etikete sahip tüm makalelere göz atın
     categoryDescription: Bu kategorideki tüm makalelere göz atın
     tagsPageDescription: Blog genelinde kullanılan tüm etiketleri keşfedin
-    categoriesPageDescription: Blogda mevcut kategorileri ve tüm yazıları keşfedin...
+    categoriesPageDescription: Blogdaki mevcut kategorileri ve tüm yazıları keşfedin...
     categoriesPageDescriptionhome: Blogdaki tüm kategorileri ve yazıları keşfedin...
     archivesPageDescription: Tarihe göre düzenlenmiş makalelere göz atın
     backToBlog: Blog'a geri dön
