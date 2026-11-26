@@ -28,6 +28,7 @@ const {
     <ClientRouter />
     <ElementCrossing />
     <PointerOnNavigation />
+    <GoogleAnalytics /><!-- Google Analytics Bileşeni -->
     <Header title={title} description={description} favicon={SITE_FAVICON} image={image} />
     <title>{isBlogPost ? title : `${title} - ${SITE_TAB}`}</title>
 
@@ -74,13 +75,6 @@ const {
         document.addEventListener("astro:after-swap", applyTheme);
       })();
     </script>
-    <!-- Telemetry  -->
-    <script
-      is:inline
-      src="https://cdn.telemetrydeck.com/websdk/telemetrydeck.min.js"
-      data-app-id="ED27DE8C-85CD-47BD-A215-69388F308B14"></script>
-    <!-- Google Analytics Bileşeni -->
-    <GoogleAnalytics />
   </head>
 
   <body class="flex flex-col min-h-screen" {...isIndexed ? { "data-pagefind-body": true } : {}}>
